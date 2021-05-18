@@ -53,3 +53,5 @@ _G.JFRTheme_Space = {
 	Color3.fromRGB(245, 245, 255),
 	Color3.fromRGB(155, 155, 255) 
 }
+
+_G.JFRThemesLoaded = true
