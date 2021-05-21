@@ -53,5 +53,32 @@ _G.JFRTheme_Space = {
 	Color3.fromRGB(245, 245, 255),
 	Color3.fromRGB(155, 155, 255) 
 }
+_G.JFRTheme_Ocean = {
+	Color3.fromRGB(25, 35, 40),   
+	Color3.fromRGB(10, 20, 25),   
+	Color3.fromRGB(40, 50, 55),   
+	Color3.fromRGB(35, 45, 50),   
+	Color3.fromRGB(20, 30, 30),   
+	Color3.fromRGB(25, 110, 60),  
+	Color3.fromRGB(255, 255, 255),
+	Color3.fromRGB(245, 255, 255),
+	Color3.fromRGB(155, 165, 255) 
+}
+
+local _G.JFRSelectedTheme = math.random(1,6)
+if _G.JFRSelectedTheme == 1 then
+    _G.JFRSelectedTheme = _G.JFRTheme_Steel
+elseif _G.JFRSelectedTheme == 2 then
+    _G.JFRSelectedTheme = _G.JFRTheme_Dark
+elseif _G.JFRSelectedTheme == 3 then
+    _G.JFRSelectedTheme = _G.JFRTheme_Rust
+elseif _G.JFRSelectedTheme == 4 then
+    _G.JFRSelectedTheme = _G.JFRTheme_Violet
+elseif _G.JFRSelectedTheme == 5 then
+    _G.JFRSelectedTheme = _G.JFRTheme_Space
+elseif _G.JFRSelectedTheme == 6 then
+    _G.JFRSelectedTheme = _G.JFRTheme_Ocean
+end
+
 
 _G.JFRThemesLoaded = true
