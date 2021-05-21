@@ -65,7 +65,7 @@ _G.JFRTheme_Ocean = {
 	Color3.fromRGB(155, 165, 255) 
 }
 
-local _G.JFRSelectedTheme = math.random(1,6)
+_G.JFRSelectedTheme = math.random(1,6)
 if _G.JFRSelectedTheme == 1 then
     _G.JFRSelectedTheme = _G.JFRTheme_Steel
 elseif _G.JFRSelectedTheme == 2 then
