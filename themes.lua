@@ -21,15 +21,15 @@ _G.JFRTheme_Steel = {
 	Color3.fromRGB(155, 155, 255) 
 }
 _G.JFRTheme_Rust = {
-	Color3.fromRGB(45, 25, 25),   
-	Color3.fromRGB(30, 10, 10),   
-	Color3.fromRGB(60, 40, 40),   
-	Color3.fromRGB(55, 35, 35),   
-	Color3.fromRGB(40, 20, 20),   
-	Color3.fromRGB(45, 100, 45),  
+	Color3.fromRGB(65, 25, 25),   
+	Color3.fromRGB(50, 10, 10),   
+	Color3.fromRGB(80, 40, 40),   
+	Color3.fromRGB(75, 35, 35),   
+	Color3.fromRGB(60, 20, 20),   
+	Color3.fromRGB(65, 100, 45),  
 	Color3.fromRGB(255, 255, 255),
 	Color3.fromRGB(255, 245, 255),
-	Color3.fromRGB(175, 155, 255) 
+	Color3.fromRGB(195, 155, 255) 
 }
 _G.JFRTheme_Violet = {
 	Color3.fromRGB(35, 25, 45),   
