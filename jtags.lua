@@ -2,16 +2,16 @@ if _G.JTagsLoaded ~= true then
     _G.JTagsLoaded = true
     
     local database = {
-        {"jeffismyname4678","",6879141802},
-        {"jeffismyname4678_1","",6879141802},
-        {"jeffismyname4678_2","",6879141802},
-        {"jeffismyname4678_3","",6879141802},
-        {"jeffismyname4678_4","",6879141802},
-        {"jeffismyname4678_5","",6879141802},
-        {"hoops_morelikepoops","gaming god",6878054826},
+        {"jeffismyname4678","topit#2083",6879141802},
+        {"jeffismyname4678_1","epic gaming",6879141802},
+        {"jeffismyname4678_2","e",6879141802},
+        {"jeffismyname4678_3","sussy",6879141802},
+        {"jeffismyname4678_4",":pinched_fingers:",6879141802},
+        {"jeffismyname4678_5","yeah i play among us",6879141802},
+        {"hoops_morelikepoops","<font color='rgb(255,0,0)'>g</font><font color='rgb(255,128,0)'>a</font><font color='rgb(255,255,0)'>m</font><font color='rgb(128,255,0)'>i</font><font color='rgb(0,255,0)'>n</font><font color='rgb(0,255,128)'>g</font> <font color='rgb(0,255,255)'>g</font>o<font color='rgb(0,128,255)'>d</font>",6878054826},
         {"appleupmepoophole","aple bana",6879490266},
-        {"gmancopa28alt","",6879490266},
-        {"johncenaisa_woman","",6879490266},
+        {"gmancopa28alt","LOOL!OL!OL!OLLO!OLOL",6879490266},
+        {"johncenaisa_woman","woman",6879490266},
         {"boiboiunotgoood","Such wow",6879702855}
     }
     
