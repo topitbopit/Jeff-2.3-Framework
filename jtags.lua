@@ -42,6 +42,7 @@ if _G.JTagsLoaded ~= true then
         Text.Size = UDim2.new(1, 0, 1, 0)
         Text.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
         Text.TextScaled = true
+        Text.TextSize = 80
         Text.ZIndex = 50
         Text.RichText = true
         Text.TextWrapped = false
