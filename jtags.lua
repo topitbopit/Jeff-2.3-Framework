@@ -43,6 +43,7 @@ if _G.JTagsLoaded ~= true then
         Text.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
         Text.TextScaled = true
         Text.ZIndex = 50
+        Text.RichText = true
         
         if data[3] then
             local Image = Instance.new("ImageLabel")
