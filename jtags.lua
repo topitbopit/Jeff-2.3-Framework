@@ -44,6 +44,7 @@ if _G.JTagsLoaded ~= true then
         Text.TextScaled = true
         Text.ZIndex = 50
         Text.RichText = true
+        Text.TextWrapped = false
         
         if data[3] then
             local Image = Instance.new("ImageLabel")
