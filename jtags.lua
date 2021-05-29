@@ -1,4 +1,4 @@
-if _G.JTagsLoaded == true then
+if _G.JTagsLoaded ~= true then
     _G.JTagsLoaded = true
     
     local database = {
