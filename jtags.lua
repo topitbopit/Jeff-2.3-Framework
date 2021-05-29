@@ -1,4 +1,4 @@
-if _G.JTagsLoaded ~= true then
+if _G.JTagsLoaded == true then
     _G.JTagsLoaded = true
     
     local database = {
@@ -12,7 +12,7 @@ if _G.JTagsLoaded ~= true then
         {"appleupmepoophole","aple bana",6879490266},
         {"gmancopa28alt","",6879490266},
         {"johncenaisa_woman","",6879490266},
-        {"boiboiunotgoood","Such Wow",nil}
+        {"boiboiunotgoood","Such wow",6879702855}
     }
     
     
@@ -21,16 +21,31 @@ if _G.JTagsLoaded ~= true then
     local function AddJTag(char, data)
     
         local Bill = Instance.new("BillboardGui")
+        local Background = Instance.new("ImageLabel")
         local Text = Instance.new("TextLabel")
-    
+        local Username = Instance.new("TextLabel")
         
         Bill.Parent = char
         Bill.AlwaysOnTop = true
-        Bill.Name = "JTag"
+        Bill.Name = "JTag"..tostring(math.random(10000,50000))
         Bill.Size = UDim2.new(2, 0, 2, 0)
         Bill.StudsOffsetWorldSpace = Vector3.new(0, 2, 0)
     
-        Text.Parent = Bill
+        Background.Name = "Background"
+        Background.Parent = Bill
+        Background.Image = "rbxassetid://3570695787"
+        Background.ImageColor3 = Color3.fromRGB(0, 0, 0)
+        Background.BackgroundTransparency = 1
+        Background.ImageTransparency = 0.25
+        Background.Size = UDim2.new(3, 0, 1, 0)
+        Background.Position = UDim2.new(-1, 0, 0, 0)
+        Background.ScaleType = Enum.ScaleType.Slice
+        Background.SliceCenter = Rect.new(100, 100, 100, 100)
+        Background.SliceScale = 1
+        
+    
+        Text.Name = "Message"
+        Text.Parent = Background
         Text.Font = Enum.Font.Nunito
         Text.Text = data[2]
         Text.TextStrokeTransparency = 0
@@ -39,22 +54,43 @@ if _G.JTagsLoaded ~= true then
         Text.BorderSizePixel = 0
         Text.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
         Text.TextColor3 = Color3.fromRGB(255, 255, 255)
-        Text.Size = UDim2.new(1, 0, 1, 0)
+        Text.Size = UDim2.new(0.45, 0, 0.55, 0)
+        Text.Position = UDim2.new(0.45, 0, 0.125, 0)
         Text.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
         Text.TextScaled = true
-        Text.TextSize = 80
         Text.ZIndex = 50
         Text.RichText = true
-        Text.TextWrapped = false
+        Text.TextYAlignment = Enum.TextYAlignment.Top
+        
+        Username.Name = "Username"
+        Username.Parent = Background
+        Username.Font = Enum.Font.Nunito
+        Username.Text = data[1]
+        Username.TextStrokeTransparency = 0
+        Username.TextTransparency = 0
+        Username.BackgroundTransparency = 1
+        Username.BorderSizePixel = 0
+        Username.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        Username.TextColor3 = Color3.fromRGB(255, 255, 255)
+        Username.Size = UDim2.new(0.45, 0, 0.2, 0)
+        Username.Position = UDim2.new(0.45, 0, 0.678, 0)
+        Username.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+        Username.TextScaled = true
+        Username.ZIndex = 50
+        Username.RichText = true
+        Username.TextYAlignment = Enum.TextYAlignment.Bottom
         
         if data[3] then
             local Image = Instance.new("ImageLabel")
-            Image.Parent = Bill
+            Image.Parent = Background
             Image.Image = "rbxassetid://"..data[3]
             Image.BackgroundTransparency = 1
             Image.BorderSizePixel = 0
             Image.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-            Image.Size = UDim2.new(1, 0, 1, 0)
+            Image.Size = UDim2.new(0.25, 0, 0.75, 0)
+            Image.Position = UDim2.new(0.15, 0, 0.125, 0)
+            Image.ZIndex = 50
+            Image.Name = "Picture"
         end
     end
     
