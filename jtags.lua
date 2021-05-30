@@ -13,7 +13,8 @@ if _G.JTagsLoaded ~= true then
         {"gmancopa28alt","LOOL!OL!OL!OLLO!OLOL",6879490266},
         {"johncenaisa_woman","woman",6879490266},
         {"boiboiunotgoood","Such wow",6879702855},
-        {"RSG_Quackity","Fuck Off",2560019913}
+        {"RSG_Quackity","Fuck Off",2560019913},
+        {"iaimbotonhoops424","i actually aimbot",6884361709}
     }
     
     
