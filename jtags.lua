@@ -12,9 +12,10 @@ if _G.JTagsLoaded ~= true then
         {"appleupmepoophole","aple bana",6879490266},
         {"gmancopa28alt","LOOL!OL!OL!OLLO!OLOL",6879490266},
         {"johncenaisa_woman","woman",6879490266},
-        {"boiboiunotgoood","Such wow",6879702855},
+        {"boiboiunotgoood","<font color='rgb(255,0,0)'><b><i>Bob Is Hot?</i></b></font>",6879702855},
         {"RSG_Quackity","Fuck Off",2560019913},
-        {"iaimbotonhoops424","i actually aimbot",6884361709}
+        {"iaimbotonhoops424","i actually aimbot",6884361709},
+        {"MonkeyFresno","im big stupid",538854000}
     }
     
     
@@ -31,7 +32,7 @@ if _G.JTagsLoaded ~= true then
         Bill.AlwaysOnTop = false
         Bill.Name = "JTag"..tostring(math.random(10000,50000))
         Bill.Size = UDim2.new(2, 0, 2, 0)
-        Bill.StudsOffsetWorldSpace = Vector3.new(0, 2, 0)
+        Bill.StudsOffsetWorldSpace = Vector3.new(0, 2.5, 0)
     
         Background.Name = "Background"
         Background.Parent = Bill
