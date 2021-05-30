@@ -12,7 +12,8 @@ if _G.JTagsLoaded ~= true then
         {"appleupmepoophole","aple bana",6879490266},
         {"gmancopa28alt","LOOL!OL!OL!OLLO!OLOL",6879490266},
         {"johncenaisa_woman","woman",6879490266},
-        {"boiboiunotgoood","<font color='rgb(255,0,0)'><b><i>Bob Is Hot?</i></b></font>",6879702855}
+        {"boiboiunotgoood","Such wow",6879702855},
+        {"RSG_Quackity","Fuck Off",2560019913}
     }
     
     
