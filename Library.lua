@@ -444,7 +444,7 @@ function JFR.NewButton(name, parent, params, functions)
     inst.ClipsDescendants = true
 
 
-    JFR.JFR.InstanceStates[name] = false
+    JFR.InstanceStates[name] = false
     JFR.Instances[name] = inst
     if not params.Unroundify then
        Roundify(inst) 
@@ -453,8 +453,8 @@ function JFR.NewButton(name, parent, params, functions)
     inst.MouseButton1Click:Connect(function() 
         Thread(function() ClickAnimation(inst) end)
         if not SingleFiremode then
-            JFR.JFR.InstanceStates[name] = not JFR.JFR.InstanceStates[name]
-            if JFR.JFR.InstanceStates[name] then
+            JFR.InstanceStates[name] = not JFR.InstanceStates[name]
+            if JFR.InstanceStates[name] then
                 OpenObject(inst)
                 functions.on()
             else
