@@ -1,21 +1,4 @@
-local r = math.random(1,3)
-local g = math.random(1,3)
-local b = math.random(1,3)
 
-local JFRSelectedTheme = {
-    shadow = Color3.fromRGB(0,0,0),
-    shade1 = Color3.fromRGB(r*2,g*2,b*2),
-    shade2 = Color3.fromRGB(r*5,g*5,b*5),
-    shade3 = Color3.fromRGB(r*13,g*13,b*13),
-    shade4 = Color3.fromRGB(r*14,g*14,b*14),
-    shade5 = Color3.fromRGB(r*17,g*17,b*17),
-    shade6 = Color3.fromRGB(r*21,g*21,b*21),
-    shade7 = Color3.fromRGB(r*25,g*25,b*25),
-    shade8 = Color3.fromRGB(r*51,g*51,b*51),
-    text = Color3.fromRGB(255-(r*8),255-(g*8),255-(b*8)),
-    selected = Color3.fromRGB(r*40,g*40+20,b*40)
-    
-}
 
 
 
@@ -34,13 +17,13 @@ screen.Parent = game.CoreGui
 local function OpenObject(object, timing, dir)
     timing = timing or 0.25 
     dir = dir or Enum.EasingDirection.Out
-    TweenService:Create(object,TweenInfo.new(timing, Enum.EasingStyle.Exponential, dir),{BackgroundColor3 = _G.JFRSelectedTheme.selected }):Play()
+    TweenService:Create(object,TweenInfo.new(timing, Enum.EasingStyle.Exponential, dir),{BackgroundColor3 = _G.JFR.Theme.selected }):Play()
 end
 
 local function CloseObject(object, timing, dir)
     timing = timing or 0.25 
     dir = dir or Enum.EasingDirection.Out
-    TweenService:Create(object,TweenInfo.new(timing, Enum.EasingStyle.Exponential, dir),{BackgroundColor3 = _G.JFRSelectedTheme.shade7}):Play()
+    TweenService:Create(object,TweenInfo.new(timing, Enum.EasingStyle.Exponential, dir),{BackgroundColor3 = _G.JFR.Theme.shade7}):Play()
 end
 
 local function TweenPosition(object, dest, timing, dir)
@@ -82,7 +65,7 @@ local function ClickAnimation(object)
         f.BackgroundTransparency = 1
         f.ZIndex = object.ZIndex + 1
         f.Image = "rbxassetid://3570695787"
-        f.ImageColor3 = _G.JFRSelectedTheme.text
+        f.ImageColor3 = _G.JFR.Theme.text
         f.ImageTransparency = 0.3
         
         f.Size = UDim2.new(0, 0, 0, 0)
@@ -106,7 +89,7 @@ local function ParticleAnimation(object)
             f.BackgroundTransparency = 1
             f.ZIndex = object.ZIndex + 1
             f.Image = "rbxassetid://3570695787"
-            f.ImageColor3 = _G.JFRSelectedTheme.text
+            f.ImageColor3 = _G.JFR.Theme.text
             f.ImageTransparency = 0.5
             
             f.Size = UDim2.new(0, 8, 0, 8)
@@ -166,15 +149,38 @@ local function Roundify(v)
     e.CornerRadius = UDim.new(0, 10)
 end
 
-local Instances = {}
-local InstanceStates = {}
-local ParentBoard = nil
+
+local r = math.random(1,3)
+local g = math.random(1,3)
+local b = math.random(1,3)
+
+
 
 local JFR = {}
 
+JFR.Instances = {}
+JFR.InstanceStates = {}
+JFR.ParentBoard = nil
+JFR.Theme = {
+    shadow = Color3.fromRGB(0,0,0),
+    shade1 = Color3.fromRGB(r*2,g*2,b*2),
+    shade2 = Color3.fromRGB(r*5,g*5,b*5),
+    shade3 = Color3.fromRGB(r*13,g*13,b*13),
+    shade4 = Color3.fromRGB(r*14,g*14,b*14),
+    shade5 = Color3.fromRGB(r*17,g*17,b*17),
+    shade6 = Color3.fromRGB(r*21,g*21,b*21),
+    shade7 = Color3.fromRGB(r*25,g*25,b*25),
+    shade8 = Color3.fromRGB(r*51,g*51,b*51),
+    text = Color3.fromRGB(255-(r*8),255-(g*8),255-(b*8)),
+    selected = Color3.fromRGB(r*40,g*40+20,b*40)
+    
+}
+
+
+
 
 function JFR.GetInstanceByName(name)
-    for i,v in pairs(Instances) do
+    for i,v in pairs(JFR.Instances) do
         if i == name then
             return v
         end
@@ -198,7 +204,7 @@ function JFR.SendMessage(params, clickevent)
         local MessageLabel = Instance.new("TextButton")
         
         MessageFrame.Parent = screen
-        MessageFrame.BackgroundColor3 = _G.JFRSelectedTheme.shade5
+        MessageFrame.BackgroundColor3 = _G.JFR.Theme.shade5
         MessageFrame.Size = params.Size
         MessageFrame.ZIndex = 200
         --MessageFrame.CanvasSize = UDim2.new(0, 0)
@@ -206,7 +212,7 @@ function JFR.SendMessage(params, clickevent)
         
         local v2 = MessageFrame:Clone()
         v2.Parent = MessageFrame
-        v2.BackgroundColor3 = _G.JFRSelectedTheme.shadow
+        v2.BackgroundColor3 = _G.JFR.Theme.shadow
         v2.Position = MessageFrame.Position + UDim2.new(0, 3, 0, 3)
         v2.BackgroundTransparency = 0.3
         v2.ZIndex = MessageFrame.ZIndex - 1
@@ -214,7 +220,7 @@ function JFR.SendMessage(params, clickevent)
         MessageLabel.Parent = MessageFrame
         MessageLabel.BackgroundTransparency = 1
         MessageLabel.BorderSizePixel = 0
-        MessageLabel.TextColor3 = _G.JFRSelectedTheme.text
+        MessageLabel.TextColor3 = _G.JFR.Theme.text
         MessageLabel.Position = UDim2.new(0.5, -(params.Size.X.Offset / 2), 0, 5)
         MessageLabel.Size = UDim2.new(0, params.Size.X.Offset, 0, 25)
         MessageLabel.Font = Enum.Font.Nunito
@@ -256,8 +262,8 @@ function JFR.NewBoard(name, parent, params, mainboard)
     params.Size = params.Size or UDim2.new(0, 500, 0, 250)
     params.ZIndex = params.ZIndex or 100
     params.ZIndex = params.ZIndex or 100
-    params.BackgroundColor3 = params.BackgroundColor3 or _G.JFRSelectedTheme.shade5
-    params.BorderColor3 = params.BorderColor3 or _G.JFRSelectedTheme.shade1
+    params.BackgroundColor3 = params.BackgroundColor3 or _G.JFR.Theme.shade5
+    params.BorderColor3 = params.BorderColor3 or _G.JFR.Theme.shade1
     params.BackgroundTransparency = params.BackgroundTransparency or 0
     
     params.Unroundify = params.Unroundify or false
@@ -280,14 +286,14 @@ function JFR.NewBoard(name, parent, params, mainboard)
     inst.Visible          = true
     inst.ZIndex           = params.ZIndex
 
-    Instances[name] = inst
+    JFR.Instances[name] = inst
     
     if not params.Unroundify then
        Roundify(inst) 
     end
 
     if mainboard then
-        ParentBoard = inst
+        JFR.ParentBoard = inst
         local Dragging = {}
         
         inst.InputBegan:Connect(function(input)
@@ -331,8 +337,8 @@ function JFR.NewMenu(name, parent, params)
     params.CanvasSize = params.CanvasSize or UDim2.new(0, 350, 0, 400)
     params.Size = params.Size or UDim2.new(0, 400, 0, 200)
     params.ZIndex = params.ZIndex or parent.ZIndex + 20
-    params.BackgroundColor3 = params.BackgroundColor3 or _G.JFRSelectedTheme.shade3
-    params.BorderColor3 = params.BorderColor3 or _G.JFRSelectedTheme.shade1
+    params.BackgroundColor3 = params.BackgroundColor3 or _G.JFR.Theme.shade3
+    params.BorderColor3 = params.BorderColor3 or _G.JFR.Theme.shade1
     
     params.Unroundify = params.Unroundify or false
     
@@ -347,14 +353,14 @@ function JFR.NewMenu(name, parent, params)
     inst.CanvasSize = params.CanvasSize
     inst.ScrollingDirection = Enum.ScrollingDirection.Y
     inst.ScrollBarThickness = 5
-    inst.ScrollBarImageColor3 = _G.JFRSelectedTheme.shade8
+    inst.ScrollBarImageColor3 = _G.JFR.Theme.shade8
     inst.ScrollBarImageTransparency = 0
     inst.Active = true
     inst.Visible = true
     inst.Name = IIII()
     inst.ZIndex = params.ZIndex
 
-    Instances[name] = inst
+    JFR.Instances[name] = inst
     
     if not params.Unroundify then
        Roundify(inst) 
@@ -372,9 +378,9 @@ function JFR.NewText(name, parent, params)
     params.RichText = params.RichText or true
     params.TextYAlignment = params.TextYAlignment or Enum.TextYAlignment.Top
     
-    params.BackgroundColor3 = params.BackgroundColor3 or _G.JFRSelectedTheme.shade6
-    params.BorderColor3 = params.BorderColor3 or _G.JFRSelectedTheme.shade1
-    params.TextColor3 = params.TextColor3 or _G.JFRSelectedTheme.text
+    params.BackgroundColor3 = params.BackgroundColor3 or _G.JFR.Theme.shade6
+    params.BorderColor3 = params.BorderColor3 or _G.JFR.Theme.shade1
+    params.TextColor3 = params.TextColor3 or _G.JFR.Theme.text
     
     params.Unroundify = params.Unroundify or false
 
@@ -393,7 +399,7 @@ function JFR.NewText(name, parent, params)
     inst.RichText = params.RichText
     inst.BackgroundTransparency = 1
 
-    Instances[name] = inst
+    JFR.Instances[name] = inst
     
     if not params.Unroundify then
        Roundify(inst) 
@@ -416,9 +422,9 @@ function JFR.NewButton(name, parent, params, functions)
     params.Text = params.Text or "add text"
     params.TextSize = params.TextSize or 19
     params.RichText = params.RichText or true
-    params.BackgroundColor3 = params.BackgroundColor3 or _G.JFRSelectedTheme.shade7
-    params.BorderColor3 = params.BorderColor3 or _G.JFRSelectedTheme.shade1
-    params.TextColor3 = params.TextColor3 or _G.JFRSelectedTheme.text
+    params.BackgroundColor3 = params.BackgroundColor3 or _G.JFR.Theme.shade7
+    params.BorderColor3 = params.BorderColor3 or _G.JFR.Theme.shade1
+    params.TextColor3 = params.TextColor3 or _G.JFR.Theme.text
     
     params.Unroundify = params.Unroundify or false
 
@@ -438,8 +444,8 @@ function JFR.NewButton(name, parent, params, functions)
     inst.ClipsDescendants = true
 
 
-    InstanceStates[name] = false
-    Instances[name] = inst
+    JFR.JFR.InstanceStates[name] = false
+    JFR.Instances[name] = inst
     if not params.Unroundify then
        Roundify(inst) 
     end
@@ -447,8 +453,8 @@ function JFR.NewButton(name, parent, params, functions)
     inst.MouseButton1Click:Connect(function() 
         Thread(function() ClickAnimation(inst) end)
         if not SingleFiremode then
-            InstanceStates[name] = not InstanceStates[name]
-            if InstanceStates[name] then
+            JFR.JFR.InstanceStates[name] = not JFR.JFR.InstanceStates[name]
+            if JFR.JFR.InstanceStates[name] then
                 OpenObject(inst)
                 functions.on()
             else
@@ -475,9 +481,9 @@ function JFR.NewTextBox(name, parent, params, regex)
     params.PlaceholderText = params.PlaceholderText or ""
     params.TextSize = params.TextSize or 19
     params.RichText = params.RichText or true
-    params.BackgroundColor3 = params.BackgroundColor3 or _G.JFRSelectedTheme.shade7
-    params.BorderColor3 = params.BorderColor3 or _G.JFRSelectedTheme.shade1
-    params.TextColor3 = params.TextColor3 or _G.JFRSelectedTheme.text
+    params.BackgroundColor3 = params.BackgroundColor3 or _G.JFR.Theme.shade7
+    params.BorderColor3 = params.BorderColor3 or _G.JFR.Theme.shade1
+    params.TextColor3 = params.TextColor3 or _G.JFR.Theme.text
     params.ClearTextOnFocus = params.ClearTextOnFocus or false
     
     params.Unroundify = params.Unroundify or false
@@ -500,7 +506,7 @@ function JFR.NewTextBox(name, parent, params, regex)
     inst.ClearTextOnFocus = params.ClearTextOnFocus
 
 
-    Instances[name] = inst
+    JFR.Instances[name] = inst
     if not params.Unroundify then
        Roundify(inst) 
     end
@@ -529,13 +535,13 @@ end
 function JFR.Ready(position)
     position = position or UDim2.new(0.7, 0, 0.9, 0)
 
-    TweenPosition(ParentBoard, position, 0.75)
+    TweenPosition(JFR.ParentBoard, position, 0.75)
     
     for i,v in pairs(screen:GetDescendants()) do
         if v:IsA("TextLabel") then
             local v2 = v:Clone()
             v2.Parent = v.Parent
-            v2.TextColor3 = _G.JFRSelectedTheme.shadow
+            v2.TextColor3 = _G.JFR.Theme.shadow
             v2.Position = v.Position + UDim2.new(0, 3, 0, 3)
             v2.TextTransparency = 0.3
             v2.ZIndex = v.ZIndex - 1
