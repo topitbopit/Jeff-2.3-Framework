@@ -52,31 +52,31 @@ local function CloseObject(object, timing, dir)
     TweenService:Create(object,TweenInfo.new(timing, Enum.EasingStyle.Exponential, dir),{BackgroundColor3 = JFR.Theme.shade7}):Play()
 end
 
-local function TweenPosition(object, dest, timing, dir)
+local function JFR.TweenPosition(object, dest, timing, dir)
     timing = timing or 0.25
     dir = dir or Enum.EasingDirection.Out
     game.TweenService:Create(object,TweenInfo.new(timing, Enum.EasingStyle.Exponential, dir),{ Position = dest }):Play()
 end
 
-local function TweenCanvasPosition(object, dest, timing, dir)
+local function JFR.TweenCanvasPosition(object, dest, timing, dir)
     timing = timing or 0.25
     dir = dir or Enum.EasingDirection.Out
     game.TweenService:Create(object,TweenInfo.new(timing, Enum.EasingStyle.Exponential, dir),{ CanvasPosition = dest }):Play()
 end
 
-local function TweenCFrame(object, dest, timing, dir)
+local function JFR.TweenCFrame(object, dest, timing, dir)
     timing = timing or 0.25
     dir = dir or Enum.EasingDirection.Out
     game.TweenService:Create(object,TweenInfo.new(timing, Enum.EasingStyle.Exponential, dir),{ CFrame = dest }):Play()
 end
 
-local function TweenSize(object, dest, timing, dir)
+local function JFR.TweenSize(object, dest, timing, dir)
     timing = timing or 0.25
     dir = dir or Enum.EasingDirection.Out
     game.TweenService:Create(object,TweenInfo.new(timing, Enum.EasingStyle.Exponential, dir),{ Size = dest  }):Play()
 end
 
-local function TweenCustom(object, dest, timing, dir)
+local function JFR.TweenCustom(object, dest, timing, dir)
     timing = timing or 0.25
     dir = dir or Enum.EasingDirection.Out
     game.TweenService:Create(object,TweenInfo.new(timing, Enum.EasingStyle.Exponential, dir),dest):Play()
@@ -97,7 +97,7 @@ local function ClickAnimation(object)
         f.Size = UDim2.new(0, 0, 0, 0)
     	f.Position = UDim2.new(0.5, mouse.X - (object.AbsolutePosition.X + (object.Size.X.Offset / 2)), 0.5, 0)
     
-        TweenCustom(f, {ImageTransparency = 1, Size = UDim2.new(0, object.Size.X.Offset, 0, object.Size.X.Offset), Position = UDim2.new(0.5, (mouse.X - (object.AbsolutePosition.X + (object.Size.X.Offset / 2))) - (object.Size.X.Offset / 2), 0.5, -(object.Size.X.Offset / 2))}, 0.7)
+        JFR.TweenCustom(f, {ImageTransparency = 1, Size = UDim2.new(0, object.Size.X.Offset, 0, object.Size.X.Offset), Position = UDim2.new(0.5, (mouse.X - (object.AbsolutePosition.X + (object.Size.X.Offset / 2))) - (object.Size.X.Offset / 2), 0.5, -(object.Size.X.Offset / 2))}, 0.7)
         wait(0.7)
         f:Destroy()
     
@@ -122,7 +122,7 @@ local function ParticleAnimation(object)
         	f.Position = UDim2.new(0.5, object.TextBounds.X / 2 - 4, 0.5, -4)
         	table.insert(part, f)
             
-            TweenCustom(f, {ImageTransparency = 1, Size = UDim2.new(0, 0, 0, 0), Position = UDim2.new(0.5, f.Position.X.Offset + math.random(-25, 25), 0.5, math.random(-25, 25))}, 2)
+            JFR.TweenCustom(f, {ImageTransparency = 1, Size = UDim2.new(0, 0, 0, 0), Position = UDim2.new(0.5, f.Position.X.Offset + math.random(-25, 25), 0.5, math.random(-25, 25))}, 2)
         end
         wait(2)
         for i,v in pairs(part) do
@@ -132,7 +132,7 @@ local function ParticleAnimation(object)
     end))
 end
 
-local function FadeOut(object, timing)
+local function JFR.FadeOut(object, timing)
     timing = timing or 0.75 
     for i,v in pairs(object:GetDescendants()) do
         if v:IsA("Frame") then
@@ -241,14 +241,14 @@ function JFR.SendMessage(params, clickevent)
             
         if not params.Horizontal then
             MessageFrame.Position = UDim2.new(params.Position.X.Scale, params.Position.X.Offset, 1.3, params.Position.Y.Offset)
-            TweenPosition(MessageFrame, UDim2.new(params.Position.X.Scale, params.Position.X.Offset, params.Position.Y.Scale, params.Position.Y.Offset), 0.75)
+            JFR.TweenPosition(MessageFrame, UDim2.new(params.Position.X.Scale, params.Position.X.Offset, params.Position.Y.Scale, params.Position.Y.Offset), 0.75)
             wait(params.Delay)
-            TweenPosition(MessageFrame, UDim2.new(params.Position.X.Scale, params.Position.X.Offset, 1.3, params.Position.Y.Offset), 1, Enum.EasingDirection.In)
+            JFR.TweenPosition(MessageFrame, UDim2.new(params.Position.X.Scale, params.Position.X.Offset, 1.3, params.Position.Y.Offset), 1, Enum.EasingDirection.In)
         else
             MessageFrame.Position = UDim2.new(0, -params.Size.X.Offset, params.Position.Y.Scale, params.Position.Y.Offset)
-            TweenPosition(MessageFrame, UDim2.new(params.Position.X.Scale, params.Position.X.Offset, params.Position.Y.Scale, params.Position.Y.Offset), 0.75)
+            JFR.TweenPosition(MessageFrame, UDim2.new(params.Position.X.Scale, params.Position.X.Offset, params.Position.Y.Scale, params.Position.Y.Offset), 0.75)
             wait(params.Delay)
-            TweenPosition(MessageFrame, UDim2.new(0, -params.Size.X.Offset, params.Position.Y.Scale, params.Position.Y.Offset), 1, Enum.EasingDirection.In)
+            JFR.TweenPosition(MessageFrame, UDim2.new(0, -params.Size.X.Offset, params.Position.Y.Scale, params.Position.Y.Offset), 1, Enum.EasingDirection.In)
         end
         
         wait(1)
@@ -314,7 +314,7 @@ function JFR.NewBoard(name, parent, params, mainboard)
             if input.UserInputType == Enum.UserInputType.MouseMovement then
                 if Dragging[1] then
                     local delta = input.Position - Dragging[2]
-                    TweenPosition(inst, UDim2.new(Dragging[3].X.Scale, Dragging[3].X.Offset + delta.X, Dragging[3].Y.Scale, Dragging[3].Y.Offset + delta.Y), 0.75)
+                    JFR.TweenPosition(inst, UDim2.new(Dragging[3].X.Scale, Dragging[3].X.Offset + delta.X, Dragging[3].Y.Scale, Dragging[3].Y.Offset + delta.Y), 0.75)
                 end
             end
         end)
@@ -540,7 +540,7 @@ end
 function JFR.Ready(position)
     position = position or UDim2.new(0.7, 0, 0.9, 0)
 
-    TweenPosition(JFR.ParentBoard, position, 0.75)
+    JFR.TweenPosition(JFR.ParentBoard, position, 0.75)
     
     for i,v in pairs(screen:GetDescendants()) do
         if v:IsA("TextLabel") then
