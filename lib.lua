@@ -322,8 +322,7 @@ function JFR.NewBoard(name, parent, params, mainboard)
         
         connec = UserInputService.InputChanged:Connect(function(input)
             if input.UserInputType == Enum.UserInputType.MouseMovement then
-                local delta = input.Position
-                custommouse.Position = UDim2.new(0, delta.X.Scale, 0, mouse.Y.Scale)
+                custommouse.Position = UDim2.new(input.Position.X.Scale, input.Position.X.Offset, input.Position.Y.Scale, input.Position.Y.Offset)
                 
                 if Dragging[1] then
                     local delta = input.Position - Dragging[2]
@@ -335,6 +334,7 @@ function JFR.NewBoard(name, parent, params, mainboard)
         inst.AncestryChanged:Connect(function(_, parent)
             if not parent then
                 connec:Disconnect() 
+                UserInputService.MouseIconEnabled = true
             end
         end)
         
