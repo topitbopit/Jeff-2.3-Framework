@@ -309,8 +309,8 @@ function JFR.NewBoard(name, parent, params, mainboard)
         inst.InputBegan:Connect(function(input)
             if input.UserInputType == Enum.UserInputType.MouseButton1 then
                 Dragging[1] = true
-                Dragging[2] = input.Position
-                Dragging[3] = inst.Position
+                Dragging[2] = input.Position --current position
+                Dragging[3] = inst.Position --starting position 
             end
         end)
         
@@ -322,7 +322,9 @@ function JFR.NewBoard(name, parent, params, mainboard)
         
         connec = UserInputService.InputChanged:Connect(function(input)
             if input.UserInputType == Enum.UserInputType.MouseMovement then
-                TweenPosition(custommouse, UDim2.new(0, mouse.X, 0, mouse.Y), 0.25)
+                local delta = input.Position
+                custommouse.Position = UDim2.new(0, delta.X.Scale, 0, mouse.Y.Scale)
+                
                 if Dragging[1] then
                     local delta = input.Position - Dragging[2]
                     JFR.TweenPosition(inst, UDim2.new(Dragging[3].X.Scale, Dragging[3].X.Offset + delta.X, Dragging[3].Y.Scale, Dragging[3].Y.Offset + delta.Y), 0.75)
@@ -338,11 +340,12 @@ function JFR.NewBoard(name, parent, params, mainboard)
         
         inst.MouseEnter:Connect(function()
             UserInputService.MouseIconEnabled = false
-            
+            custommouse.Visible = true
         end)
         
         inst.MouseLeave:Connect(function()
-            UserInputService.MouseIconEnabled = true        
+            UserInputService.MouseIconEnabled = true
+            custommouse.Visible = false
         end)
     end
     
