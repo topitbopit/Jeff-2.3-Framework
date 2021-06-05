@@ -48,6 +48,7 @@ custommouse.BackgroundTransparency = 1
 custommouse.Visible = false
 custommouse.Image = "rbxassetid://6912096183"
 custommouse.ZIndex = 9999
+custommouse.ImageColor3 = JFR.Theme.shade4
 
 function JFR.OpenObject(object, timing, dir)
     timing = timing or 0.25 
@@ -322,7 +323,7 @@ function JFR.NewBoard(name, parent, params, mainboard)
         
         connec = UserInputService.InputChanged:Connect(function(input)
             if input.UserInputType == Enum.UserInputType.MouseMovement then
-                custommouse.Position = UDim2.new(0, mouse.X, 0, mouse.Y)--UDim2.new(input.Position.X.Scale, input.Position.X.Offset, input.Position.Y.Scale, input.Position.Y.Offset)
+                custommouse.Position = UDim2.new(0, mouse.X - 32, 0, mouse.Y - 32)--UDim2.new(input.Position.X.Scale, input.Position.X.Offset, input.Position.Y.Scale, input.Position.Y.Offset)
                 
                 if Dragging[1] then
                     local delta = input.Position - Dragging[2]
