@@ -325,6 +325,15 @@ function JFR.NewBoard(name, parent, params, mainboard)
                 connec:Disconnect() 
             end
         end)
+        
+        inst.MouseEnter:Connect(function()
+            mouse.Icon = "rbxassetid://6912096183"
+            
+        end)
+        
+        inst.MouseLeave:Connect(function()
+            mouse.Icon = ""
+        end)
     end
     
 
