@@ -313,7 +313,6 @@ function JFR.NewBoard(name, parent, params, mainboard)
         
         connec = UserInputService.InputChanged:Connect(function(input)
             if input.UserInputType == Enum.UserInputType.MouseMovement then
-                mouse.Icon = "rbxassetid://6912096183"
                 if Dragging[1] then
                     local delta = input.Position - Dragging[2]
                     JFR.TweenPosition(inst, UDim2.new(Dragging[3].X.Scale, Dragging[3].X.Offset + delta.X, Dragging[3].Y.Scale, Dragging[3].Y.Offset + delta.Y), 0.75)
@@ -328,12 +327,14 @@ function JFR.NewBoard(name, parent, params, mainboard)
         end)
         
         inst.MouseEnter:Connect(function()
-            mouse.Icon = "rbxassetid://6912096183"
+            RunService:BindToRenderStep("mousecursoroverwrite", Enum.RenderPriority.Last.Value, function()
+                mouse.Icon = "rbxassetid://6912096183"
+            end)
             
         end)
         
         inst.MouseLeave:Connect(function()
-            mouse.Icon = ""
+            RunService:UnbindFromRenderStep("mousecursoroverwrite")
         end)
     end
     
