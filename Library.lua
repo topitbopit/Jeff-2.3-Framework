@@ -1,17 +1,10 @@
-
-
-
-
-local PlayerService        = game:GetService("Players")
---Player related
+local PlayerService = game:GetService("Players")
 local plr = game.Players.LocalPlayer
 local mouse = plr:GetMouse()
 
+print("1")
 
 local screen = Instance.new("ScreenGui")
-
-
-
 screen.Parent = game.CoreGui
 
 local function OpenObject(object, timing, dir)
@@ -176,8 +169,12 @@ JFR.Theme = {
     
 }
 
+print(JFR.Theme)
 
-
+function JFR.Gay()
+   print(JFR.Theme) 
+end
+JFR.Gay()
 
 function JFR.GetInstanceByName(name)
     for i,v in pairs(JFR.Instances) do
