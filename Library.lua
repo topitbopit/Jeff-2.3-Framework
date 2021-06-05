@@ -2,7 +2,7 @@ local PlayerService = game:GetService("Players")
 local plr = game.Players.LocalPlayer
 local mouse = plr:GetMouse()
 
-print("1")
+print("2")
 
 local screen = Instance.new("ScreenGui")
 screen.Parent = game.CoreGui
