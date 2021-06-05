@@ -17,13 +17,13 @@ screen.Parent = game.CoreGui
 local function OpenObject(object, timing, dir)
     timing = timing or 0.25 
     dir = dir or Enum.EasingDirection.Out
-    TweenService:Create(object,TweenInfo.new(timing, Enum.EasingStyle.Exponential, dir),{BackgroundColor3 = _G.JFR.Theme.selected }):Play()
+    TweenService:Create(object,TweenInfo.new(timing, Enum.EasingStyle.Exponential, dir),{BackgroundColor3 = JFR.Theme.selected }):Play()
 end
 
 local function CloseObject(object, timing, dir)
     timing = timing or 0.25 
     dir = dir or Enum.EasingDirection.Out
-    TweenService:Create(object,TweenInfo.new(timing, Enum.EasingStyle.Exponential, dir),{BackgroundColor3 = _G.JFR.Theme.shade7}):Play()
+    TweenService:Create(object,TweenInfo.new(timing, Enum.EasingStyle.Exponential, dir),{BackgroundColor3 = JFR.Theme.shade7}):Play()
 end
 
 local function TweenPosition(object, dest, timing, dir)
@@ -65,7 +65,7 @@ local function ClickAnimation(object)
         f.BackgroundTransparency = 1
         f.ZIndex = object.ZIndex + 1
         f.Image = "rbxassetid://3570695787"
-        f.ImageColor3 = _G.JFR.Theme.text
+        f.ImageColor3 = JFR.Theme.text
         f.ImageTransparency = 0.3
         
         f.Size = UDim2.new(0, 0, 0, 0)
@@ -89,7 +89,7 @@ local function ParticleAnimation(object)
             f.BackgroundTransparency = 1
             f.ZIndex = object.ZIndex + 1
             f.Image = "rbxassetid://3570695787"
-            f.ImageColor3 = _G.JFR.Theme.text
+            f.ImageColor3 = JFR.Theme.text
             f.ImageTransparency = 0.5
             
             f.Size = UDim2.new(0, 8, 0, 8)
@@ -204,7 +204,7 @@ function JFR.SendMessage(params, clickevent)
         local MessageLabel = Instance.new("TextButton")
         
         MessageFrame.Parent = screen
-        MessageFrame.BackgroundColor3 = _G.JFR.Theme.shade5
+        MessageFrame.BackgroundColor3 = JFR.Theme.shade5
         MessageFrame.Size = params.Size
         MessageFrame.ZIndex = 200
         --MessageFrame.CanvasSize = UDim2.new(0, 0)
@@ -212,7 +212,7 @@ function JFR.SendMessage(params, clickevent)
         
         local v2 = MessageFrame:Clone()
         v2.Parent = MessageFrame
-        v2.BackgroundColor3 = _G.JFR.Theme.shadow
+        v2.BackgroundColor3 = JFR.Theme.shadow
         v2.Position = MessageFrame.Position + UDim2.new(0, 3, 0, 3)
         v2.BackgroundTransparency = 0.3
         v2.ZIndex = MessageFrame.ZIndex - 1
@@ -220,7 +220,7 @@ function JFR.SendMessage(params, clickevent)
         MessageLabel.Parent = MessageFrame
         MessageLabel.BackgroundTransparency = 1
         MessageLabel.BorderSizePixel = 0
-        MessageLabel.TextColor3 = _G.JFR.Theme.text
+        MessageLabel.TextColor3 = JFR.Theme.text
         MessageLabel.Position = UDim2.new(0.5, -(params.Size.X.Offset / 2), 0, 5)
         MessageLabel.Size = UDim2.new(0, params.Size.X.Offset, 0, 25)
         MessageLabel.Font = Enum.Font.Nunito
@@ -262,8 +262,8 @@ function JFR.NewBoard(name, parent, params, mainboard)
     params.Size = params.Size or UDim2.new(0, 500, 0, 250)
     params.ZIndex = params.ZIndex or 100
     params.ZIndex = params.ZIndex or 100
-    params.BackgroundColor3 = params.BackgroundColor3 or _G.JFR.Theme.shade5
-    params.BorderColor3 = params.BorderColor3 or _G.JFR.Theme.shade1
+    params.BackgroundColor3 = params.BackgroundColor3 or JFR.Theme.shade5
+    params.BorderColor3 = params.BorderColor3 or JFR.Theme.shade1
     params.BackgroundTransparency = params.BackgroundTransparency or 0
     
     params.Unroundify = params.Unroundify or false
@@ -337,8 +337,8 @@ function JFR.NewMenu(name, parent, params)
     params.CanvasSize = params.CanvasSize or UDim2.new(0, 350, 0, 400)
     params.Size = params.Size or UDim2.new(0, 400, 0, 200)
     params.ZIndex = params.ZIndex or parent.ZIndex + 20
-    params.BackgroundColor3 = params.BackgroundColor3 or _G.JFR.Theme.shade3
-    params.BorderColor3 = params.BorderColor3 or _G.JFR.Theme.shade1
+    params.BackgroundColor3 = params.BackgroundColor3 or JFR.Theme.shade3
+    params.BorderColor3 = params.BorderColor3 or JFR.Theme.shade1
     
     params.Unroundify = params.Unroundify or false
     
@@ -353,7 +353,7 @@ function JFR.NewMenu(name, parent, params)
     inst.CanvasSize = params.CanvasSize
     inst.ScrollingDirection = Enum.ScrollingDirection.Y
     inst.ScrollBarThickness = 5
-    inst.ScrollBarImageColor3 = _G.JFR.Theme.shade8
+    inst.ScrollBarImageColor3 = JFR.Theme.shade8
     inst.ScrollBarImageTransparency = 0
     inst.Active = true
     inst.Visible = true
@@ -378,9 +378,9 @@ function JFR.NewText(name, parent, params)
     params.RichText = params.RichText or true
     params.TextYAlignment = params.TextYAlignment or Enum.TextYAlignment.Top
     
-    params.BackgroundColor3 = params.BackgroundColor3 or _G.JFR.Theme.shade6
-    params.BorderColor3 = params.BorderColor3 or _G.JFR.Theme.shade1
-    params.TextColor3 = params.TextColor3 or _G.JFR.Theme.text
+    params.BackgroundColor3 = params.BackgroundColor3 or JFR.Theme.shade6
+    params.BorderColor3 = params.BorderColor3 or JFR.Theme.shade1
+    params.TextColor3 = params.TextColor3 or JFR.Theme.text
     
     params.Unroundify = params.Unroundify or false
 
@@ -422,9 +422,9 @@ function JFR.NewButton(name, parent, params, functions)
     params.Text = params.Text or "add text"
     params.TextSize = params.TextSize or 19
     params.RichText = params.RichText or true
-    params.BackgroundColor3 = params.BackgroundColor3 or _G.JFR.Theme.shade7
-    params.BorderColor3 = params.BorderColor3 or _G.JFR.Theme.shade1
-    params.TextColor3 = params.TextColor3 or _G.JFR.Theme.text
+    params.BackgroundColor3 = params.BackgroundColor3 or JFR.Theme.shade7
+    params.BorderColor3 = params.BorderColor3 or JFR.Theme.shade1
+    params.TextColor3 = params.TextColor3 or JFR.Theme.text
     
     params.Unroundify = params.Unroundify or false
 
@@ -481,9 +481,9 @@ function JFR.NewTextBox(name, parent, params, regex)
     params.PlaceholderText = params.PlaceholderText or ""
     params.TextSize = params.TextSize or 19
     params.RichText = params.RichText or true
-    params.BackgroundColor3 = params.BackgroundColor3 or _G.JFR.Theme.shade7
-    params.BorderColor3 = params.BorderColor3 or _G.JFR.Theme.shade1
-    params.TextColor3 = params.TextColor3 or _G.JFR.Theme.text
+    params.BackgroundColor3 = params.BackgroundColor3 or JFR.Theme.shade7
+    params.BorderColor3 = params.BorderColor3 or JFR.Theme.shade1
+    params.TextColor3 = params.TextColor3 or JFR.Theme.text
     params.ClearTextOnFocus = params.ClearTextOnFocus or false
     
     params.Unroundify = params.Unroundify or false
@@ -541,7 +541,7 @@ function JFR.Ready(position)
         if v:IsA("TextLabel") then
             local v2 = v:Clone()
             v2.Parent = v.Parent
-            v2.TextColor3 = _G.JFR.Theme.shadow
+            v2.TextColor3 = JFR.Theme.shadow
             v2.Position = v.Position + UDim2.new(0, 3, 0, 3)
             v2.TextTransparency = 0.3
             v2.ZIndex = v.ZIndex - 1
