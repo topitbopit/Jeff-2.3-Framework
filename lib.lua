@@ -47,6 +47,7 @@ custommouse.Size = UDim2.new(0, 64, 0, 64)
 custommouse.BackgroundTransparency = 1
 custommouse.Visible = false
 custommouse.Image = "rbxassetid://6912096183"
+custommouse.ZIndex = 9999
 
 function JFR.OpenObject(object, timing, dir)
     timing = timing or 0.25 
