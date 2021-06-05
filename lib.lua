@@ -1,3 +1,31 @@
+local r = math.random(1,3)
+local g = math.random(1,3)
+local b = math.random(1,3)
+
+
+
+local JFR = {}
+
+JFR.Instances = {}
+JFR.InstanceStates = {}
+JFR.ParentBoard = nil
+JFR.Theme = {
+    shadow = Color3.fromRGB(0,0,0),
+    shade1 = Color3.fromRGB(r*2,g*2,b*2),
+    shade2 = Color3.fromRGB(r*5,g*5,b*5),
+    shade3 = Color3.fromRGB(r*13,g*13,b*13),
+    shade4 = Color3.fromRGB(r*14,g*14,b*14),
+    shade5 = Color3.fromRGB(r*17,g*17,b*17),
+    shade6 = Color3.fromRGB(r*21,g*21,b*21),
+    shade7 = Color3.fromRGB(r*25,g*25,b*25),
+    shade8 = Color3.fromRGB(r*51,g*51,b*51),
+    text = Color3.fromRGB(255-(r*8),255-(g*8),255-(b*8)),
+    selected = Color3.fromRGB(r*40,g*40+20,b*40)
+}
+
+
+
+
 local PlayerService        = game:GetService("Players")
 local TeamsService         = game:GetService("Teams")
 local TweenService         = game:GetService("TweenService")
@@ -148,31 +176,7 @@ local function Roundify(v)
 end
 
 
-local r = math.random(1,3)
-local g = math.random(1,3)
-local b = math.random(1,3)
 
-
-
-local JFR = {}
-
-JFR.Instances = {}
-JFR.InstanceStates = {}
-JFR.ParentBoard = nil
-JFR.Theme = {
-    shadow = Color3.fromRGB(0,0,0),
-    shade1 = Color3.fromRGB(r*2,g*2,b*2),
-    shade2 = Color3.fromRGB(r*5,g*5,b*5),
-    shade3 = Color3.fromRGB(r*13,g*13,b*13),
-    shade4 = Color3.fromRGB(r*14,g*14,b*14),
-    shade5 = Color3.fromRGB(r*17,g*17,b*17),
-    shade6 = Color3.fromRGB(r*21,g*21,b*21),
-    shade7 = Color3.fromRGB(r*25,g*25,b*25),
-    shade8 = Color3.fromRGB(r*51,g*51,b*51),
-    text = Color3.fromRGB(255-(r*8),255-(g*8),255-(b*8)),
-    selected = Color3.fromRGB(r*40,g*40+20,b*40)
-    
-}
 
 
 function JFR.GetInstanceByName(name)
