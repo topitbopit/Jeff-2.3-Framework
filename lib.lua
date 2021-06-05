@@ -322,7 +322,7 @@ function JFR.NewBoard(name, parent, params, mainboard)
         
         connec = UserInputService.InputChanged:Connect(function(input)
             if input.UserInputType == Enum.UserInputType.MouseMovement then
-                custommouse.Position = UDim2.new(input.Position.X.Scale, input.Position.X.Offset, input.Position.Y.Scale, input.Position.Y.Offset)
+                custommouse.Position = UDim2.new(0, mouse.X, 0, mouse.Y)--UDim2.new(input.Position.X.Scale, input.Position.X.Offset, input.Position.Y.Scale, input.Position.Y.Offset)
                 
                 if Dragging[1] then
                     local delta = input.Position - Dragging[2]
