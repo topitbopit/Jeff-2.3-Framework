@@ -40,49 +40,49 @@ local mouse = plr:GetMouse()
 local screen = Instance.new("ScreenGui")
 screen.Parent = game.CoreGui
 
-local function OpenObject(object, timing, dir)
+function JFR.OpenObject(object, timing, dir)
     timing = timing or 0.25 
     dir = dir or Enum.EasingDirection.Out
     TweenService:Create(object,TweenInfo.new(timing, Enum.EasingStyle.Exponential, dir),{BackgroundColor3 = JFR.Theme.selected }):Play()
 end
 
-local function CloseObject(object, timing, dir)
+function JFR.CloseObject(object, timing, dir)
     timing = timing or 0.25 
     dir = dir or Enum.EasingDirection.Out
     TweenService:Create(object,TweenInfo.new(timing, Enum.EasingStyle.Exponential, dir),{BackgroundColor3 = JFR.Theme.shade7}):Play()
 end
 
-local function JFR.TweenPosition(object, dest, timing, dir)
+function JFR.TweenPosition(object, dest, timing, dir)
     timing = timing or 0.25
     dir = dir or Enum.EasingDirection.Out
     game.TweenService:Create(object,TweenInfo.new(timing, Enum.EasingStyle.Exponential, dir),{ Position = dest }):Play()
 end
 
-local function JFR.TweenCanvasPosition(object, dest, timing, dir)
+function JFR.TweenCanvasPosition(object, dest, timing, dir)
     timing = timing or 0.25
     dir = dir or Enum.EasingDirection.Out
     game.TweenService:Create(object,TweenInfo.new(timing, Enum.EasingStyle.Exponential, dir),{ CanvasPosition = dest }):Play()
 end
 
-local function JFR.TweenCFrame(object, dest, timing, dir)
+function JFR.TweenCFrame(object, dest, timing, dir)
     timing = timing or 0.25
     dir = dir or Enum.EasingDirection.Out
     game.TweenService:Create(object,TweenInfo.new(timing, Enum.EasingStyle.Exponential, dir),{ CFrame = dest }):Play()
 end
 
-local function JFR.TweenSize(object, dest, timing, dir)
+function JFR.TweenSize(object, dest, timing, dir)
     timing = timing or 0.25
     dir = dir or Enum.EasingDirection.Out
     game.TweenService:Create(object,TweenInfo.new(timing, Enum.EasingStyle.Exponential, dir),{ Size = dest  }):Play()
 end
 
-local function JFR.TweenCustom(object, dest, timing, dir)
+function JFR.TweenCustom(object, dest, timing, dir)
     timing = timing or 0.25
     dir = dir or Enum.EasingDirection.Out
     game.TweenService:Create(object,TweenInfo.new(timing, Enum.EasingStyle.Exponential, dir),dest):Play()
 end
 
-local function ClickAnimation(object)
+function JFR.ClickAnimation(object)
     coroutine.resume(coroutine.create(function()
         
         local f = Instance.new("ImageLabel")
@@ -104,7 +104,7 @@ local function ClickAnimation(object)
     end))
 end
 
-local function ParticleAnimation(object)
+function JFR.ParticleAnimation(object)
     coroutine.resume(coroutine.create(function()
         local part = {}
         for i = 0, 10 do 
@@ -132,7 +132,7 @@ local function ParticleAnimation(object)
     end))
 end
 
-local function JFR.FadeOut(object, timing)
+function JFR.FadeOut(object, timing)
     timing = timing or 0.75 
     for i,v in pairs(object:GetDescendants()) do
         if v:IsA("Frame") then
@@ -153,7 +153,7 @@ local function JFR.FadeOut(object, timing)
     end
 end
 
-local function Thread(func)
+function JFR.Async(func)
     coroutine.resume(coroutine.create(func)) 
     
 end
@@ -188,7 +188,7 @@ function JFR.GetInstanceByName(name)
 end
 
 function JFR.SendMessage(params, clickevent)
-    Thread(function()
+    JFR.Async(function()
         params.Text     = params.Text or nil
         params.Delay    = params.Delay or 2
         params.Size     = params.Size or UDim2.new(0, 150, 0, 50)
@@ -451,18 +451,18 @@ function JFR.NewButton(name, parent, params, functions)
     end
     
     inst.MouseButton1Click:Connect(function() 
-        Thread(function() ClickAnimation(inst) end)
+        JFR.Async(function() JFR.ClickAnimation(inst) end)
         if not SingleFiremode then
             JFR.InstanceStates[name] = not JFR.InstanceStates[name]
             if JFR.InstanceStates[name] then
-                OpenObject(inst)
+                JFR.OpenObject(inst)
                 functions.on()
             else
-                CloseObject(inst)
+                JFR.CloseObject(inst)
                 functions.off()
             end
         else
-            Thread(function() ClickAnimation(inst) end)
+            JFR.Async(function() JFR.ClickAnimation(inst) end)
             functions.on()
         end
     end)
@@ -513,17 +513,17 @@ function JFR.NewTextBox(name, parent, params, regex)
     
     
     inst.Focused:Connect(function() 
-        Thread(function() ClickAnimation(inst) end)
-        OpenObject(inst)
+        JFR.Async(function() JFR.ClickAnimation(inst) end)
+        JFR.OpenObject(inst)
         
     end)
     
     inst.FocusLost:Connect(function() 
-        CloseObject(inst)
+        JFR.CloseObject(inst)
     end)
     
     inst:GetPropertyChangedSignal("Text"):Connect(function()
-        Thread(function() ParticleAnimation(inst) end)
+        JFR.Async(function() JFR.ParticleAnimation(inst) end)
     end)
         
     return inst
