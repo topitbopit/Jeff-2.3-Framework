@@ -1,8 +1,7 @@
 local PlayerService = game:GetService("Players")
+local UserInputService     = game:GetService("UserInputService")
 local plr = game.Players.LocalPlayer
 local mouse = plr:GetMouse()
-
-print("2")
 
 local screen = Instance.new("ScreenGui")
 screen.Parent = game.CoreGui
@@ -169,12 +168,6 @@ JFR.Theme = {
     
 }
 
-print(JFR.Theme)
-
-function JFR.Gay()
-   print(JFR.Theme) 
-end
-JFR.Gay()
 
 function JFR.GetInstanceByName(name)
     for i,v in pairs(JFR.Instances) do
