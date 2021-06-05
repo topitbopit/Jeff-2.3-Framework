@@ -265,6 +265,7 @@ function JFR.NewBoard(name, parent, params, mainboard)
     params.BackgroundColor3 = params.BackgroundColor3 or JFR.Theme.shade5
     params.BorderColor3 = params.BorderColor3 or JFR.Theme.shade1
     params.BackgroundTransparency = params.BackgroundTransparency or 0
+    params.Invisible = params.Invisible or false
     
     params.Unroundify = params.Unroundify or false
     
@@ -283,7 +284,7 @@ function JFR.NewBoard(name, parent, params, mainboard)
     inst.BackgroundTransparency = params.BackgroundTransparency
     inst.Size             = params.Size
     inst.Active           = true
-    inst.Visible          = true
+    inst.Visible          = not params.Invisible
     inst.ZIndex           = params.ZIndex
 
     JFR.Instances[name] = inst
@@ -339,6 +340,7 @@ function JFR.NewMenu(name, parent, params)
     params.ZIndex = params.ZIndex or parent.ZIndex + 20
     params.BackgroundColor3 = params.BackgroundColor3 or JFR.Theme.shade3
     params.BorderColor3 = params.BorderColor3 or JFR.Theme.shade1
+    params.Invisible = params.Invisible or false
     
     params.Unroundify = params.Unroundify or false
     
@@ -356,7 +358,7 @@ function JFR.NewMenu(name, parent, params)
     inst.ScrollBarImageColor3 = JFR.Theme.shade8
     inst.ScrollBarImageTransparency = 0
     inst.Active = true
-    inst.Visible = true
+    inst.Visible = not params.Invisible
     inst.Name = IIII()
     inst.ZIndex = params.ZIndex
 
@@ -377,6 +379,7 @@ function JFR.NewText(name, parent, params)
     params.TextSize = params.TextSize or 19
     params.RichText = params.RichText or true
     params.TextYAlignment = params.TextYAlignment or Enum.TextYAlignment.Top
+    params.Invisible = params.Invisible or false
     
     params.BackgroundColor3 = params.BackgroundColor3 or JFR.Theme.shade6
     params.BorderColor3 = params.BorderColor3 or JFR.Theme.shade1
@@ -396,6 +399,7 @@ function JFR.NewText(name, parent, params)
     inst.TextYAlignment = params.TextYAlignment
     inst.Name = IIII()
     inst.ZIndex = params.ZIndex
+    inst.Visible = not params.Invisible
     inst.RichText = params.RichText
     inst.BackgroundTransparency = 1
 
@@ -425,6 +429,7 @@ function JFR.NewButton(name, parent, params, functions)
     params.BackgroundColor3 = params.BackgroundColor3 or JFR.Theme.shade7
     params.BorderColor3 = params.BorderColor3 or JFR.Theme.shade1
     params.TextColor3 = params.TextColor3 or JFR.Theme.text
+    params.Invisible = params.Invisible or false
     
     params.Unroundify = params.Unroundify or false
 
@@ -439,6 +444,7 @@ function JFR.NewButton(name, parent, params, functions)
     inst.TextSize = params.TextSize
     inst.RichText = params.RichText
     inst.Name = IIII()
+    inst.Visible = not params.Invisible
     inst.ZIndex = params.ZIndex
     inst.BackgroundTransparency = 0
     inst.ClipsDescendants = true
@@ -485,6 +491,7 @@ function JFR.NewTextBox(name, parent, params, regex)
     params.BorderColor3 = params.BorderColor3 or JFR.Theme.shade1
     params.TextColor3 = params.TextColor3 or JFR.Theme.text
     params.ClearTextOnFocus = params.ClearTextOnFocus or false
+    params.Invisible = params.Invisible or false
     
     params.Unroundify = params.Unroundify or false
 
@@ -503,6 +510,7 @@ function JFR.NewTextBox(name, parent, params, regex)
     inst.ZIndex = params.ZIndex
     inst.BackgroundTransparency = 0
     inst.ClipsDescendants = true
+    inst.Visible = not params.Invisible
     inst.ClearTextOnFocus = params.ClearTextOnFocus
 
 
