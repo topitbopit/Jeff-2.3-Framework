@@ -19,8 +19,9 @@ JFR.Theme = {
     shade6 = Color3.fromRGB(r*21,g*21,b*21),
     shade7 = Color3.fromRGB(r*25,g*25,b*25),
     shade8 = Color3.fromRGB(r*51,g*51,b*51),
+    shade9 = Color3.fromRGB(r*85,g*85,b*85),
     text = Color3.fromRGB(255-(r*8),255-(g*8),255-(b*8)),
-    selected = Color3.fromRGB(r*40,g*40+20,b*40)
+    selected = Color3.fromRGB(r*40,g*40+20,b*40),
 }
 
 
@@ -48,7 +49,7 @@ custommouse.BackgroundTransparency = 1
 custommouse.Visible = false
 custommouse.Image = "rbxassetid://6912096183"
 custommouse.ZIndex = 9999
-custommouse.ImageColor3 = JFR.Theme.text
+custommouse.ImageColor3 = JFR.Theme.shade9
 
 function JFR.OpenObject(object, timing, dir)
     timing = timing or 0.25 
