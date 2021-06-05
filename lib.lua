@@ -21,7 +21,7 @@ JFR.Theme = {
     shade8 = Color3.fromRGB(r*51,g*51,b*51),
     shade9 = Color3.fromRGB(r*85,g*85,b*85),
     text = Color3.fromRGB(255-(r*8),255-(g*8),255-(b*8)),
-    selected = Color3.fromRGB(r*40,g*40+20,b*40),
+    selected = Color3.fromRGB(r*40,g*40+20,b*40)
 }
 
 
@@ -210,11 +210,13 @@ function JFR.SendMessage(params, clickevent)
         
         clickevent      = clickevent or (function() end)
         
-        
+        local sc = Instance.new("ScreenGui")
+        sc.Parent = game.CoreGui
+        sc.Name = "Message"
         local MessageFrame = Instance.new("Frame")
         local MessageLabel = Instance.new("TextButton")
         
-        MessageFrame.Parent = screen
+        MessageFrame.Parent = sc
         MessageFrame.BackgroundColor3 = JFR.Theme.shade5
         MessageFrame.Size = params.Size
         MessageFrame.ZIndex = 200
@@ -263,7 +265,7 @@ function JFR.SendMessage(params, clickevent)
         end
         
         wait(1)
-        MessageFrame:Destroy() 
+        sc:Destroy() 
     end)
 end
 
