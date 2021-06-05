@@ -48,7 +48,7 @@ custommouse.BackgroundTransparency = 1
 custommouse.Visible = false
 custommouse.Image = "rbxassetid://6912096183"
 custommouse.ZIndex = 9999
-custommouse.ImageColor3 = JFR.Theme.shade4
+custommouse.ImageColor3 = JFR.Theme.selected
 
 function JFR.OpenObject(object, timing, dir)
     timing = timing or 0.25 
