@@ -37,8 +37,16 @@ local ContextActionService = game:GetService("ContextActionService")
 local plr = game.Players.LocalPlayer
 local mouse = plr:GetMouse()
 
+
 local screen = Instance.new("ScreenGui")
 screen.Parent = game.CoreGui
+
+local custommouse = Instance.new("ImageLabel")
+custommouse.Parent = screen
+custommouse.Size = UDim2.new(0, 64, 0, 64)
+custommouse.BackgroundTransparency = 1
+custommouse.Visible = false
+custommouse.Image = "rbxassetid://6912096183"
 
 function JFR.OpenObject(object, timing, dir)
     timing = timing or 0.25 
@@ -313,6 +321,7 @@ function JFR.NewBoard(name, parent, params, mainboard)
         
         connec = UserInputService.InputChanged:Connect(function(input)
             if input.UserInputType == Enum.UserInputType.MouseMovement then
+                TweenPosition(custommouse, UDim2.new(0, mouse.X, 0, mouse.Y), 0.25)
                 if Dragging[1] then
                     local delta = input.Position - Dragging[2]
                     JFR.TweenPosition(inst, UDim2.new(Dragging[3].X.Scale, Dragging[3].X.Offset + delta.X, Dragging[3].Y.Scale, Dragging[3].Y.Offset + delta.Y), 0.75)
@@ -327,14 +336,12 @@ function JFR.NewBoard(name, parent, params, mainboard)
         end)
         
         inst.MouseEnter:Connect(function()
-            RunService:BindToRenderStep("mousecursoroverwrite", Enum.RenderPriority.Last.Value, function()
-                mouse.Icon = "rbxassetid://6912096183"
-            end)
+            UserInputService.MouseIconEnabled = false
             
         end)
         
         inst.MouseLeave:Connect(function()
-            RunService:UnbindFromRenderStep("mousecursoroverwrite")
+            UserInputService.MouseIconEnabled = true        
         end)
     end
     
