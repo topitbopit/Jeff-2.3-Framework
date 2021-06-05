@@ -525,8 +525,13 @@ function JFR.NewTextBox(name, parent, params, regex)
     return inst
 end
 
+function JFR.GetScreen()
+   return screen 
+end
 
-
+function JFR.GetParentBoard()
+   return JFR.ParentBoard 
+end
 
 function JFR.Ready(position)
     position = position or UDim2.new(0.7, 0, 0.9, 0)
