@@ -212,14 +212,24 @@ end
 function JFR.GetInstanceTable(name)
     return JFR.Instances
 end
+function JFR.GetInstanceValueTable(name)
+    return JFR.InstanceStates
+end
+
 function JFR.GetInstanceStatesTable(name)
     return JFR.InstanceStates
 end
+
 
 function JFR.SetInstance(name, value)
     JFR.Instances[name] = value
     return true
 end
+function JFR.SetInstanceValue(name, value)
+    JFR.InstanceStates[name] = value
+    return true
+end
+
 function JFR.SetInstanceState(name, value)
     JFR.InstanceStates[name] = value
     return true
