@@ -188,15 +188,29 @@ end
 
 
 
-
-
-function JFR.GetInstanceByName(name)
-    for i,v in pairs(JFR.Instances) do
-        if i == name then
-            return v
-        end
-    end
+function JFR.GetInstance(name)
+    return JFR.Instances[name] or nil
 end
+function JFR.GetInstanceFromName(name)
+    return JFR.Instances[name] or nil
+end
+function JFR.GetInstanceByName(name)
+    return JFR.Instances[name] or nil
+end
+
+
+function JFR.GetInstanceValueFromName(name)
+    return JFR.InstanceStates[name] or nil
+end
+function JFR.GetInstanceValue(name)
+    return JFR.InstanceStates[name] or nil
+end
+function JFR.GetInstanceValueByName(name)
+    return JFR.InstanceStates[name] or nil
+end
+
+
+
 
 function JFR.SendMessage(params, clickevent)
     JFR.Async(function()
