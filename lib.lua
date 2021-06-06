@@ -209,8 +209,21 @@ function JFR.GetInstanceValueByName(name)
     return JFR.InstanceStates[name] or nil
 end
 
+function JFR.GetInstanceTable(name)
+    return JFR.Instances
+end
+function JFR.GetInstanceStatesTable(name)
+    return JFR.InstanceStates
+end
 
-
+function JFR.SetInstance(name, value)
+    JFR.Instances[name] = value
+    return true
+end
+function JFR.SetInstanceState(name, value)
+    JFR.InstanceStates[name] = value
+    return true
+end
 
 function JFR.SendMessage(params, clickevent)
     JFR.Async(function()
