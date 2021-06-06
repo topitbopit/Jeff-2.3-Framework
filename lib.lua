@@ -504,7 +504,7 @@ end
 
 
 
-function JFR.NewTextBox(name, parent, params, regex)
+function JFR.NewTextBox(name, parent, params, functiononleave)
     
     params.Position = params.Position or UDim2.new(0, 0, 0, 0)
     params.Size = params.Size or UDim2.new(0, 100, 0, 25)
@@ -554,6 +554,7 @@ function JFR.NewTextBox(name, parent, params, regex)
     
     inst.FocusLost:Connect(function() 
         JFR.CloseObject(inst)
+        functiononleave()
     end)
     
     inst:GetPropertyChangedSignal("Text"):Connect(function()
