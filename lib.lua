@@ -329,6 +329,7 @@ function JFR.NewBoard(name, parent, params, mainboard)
     params.BorderColor3 = params.BorderColor3 or JFR.Theme.shade1
     params.BackgroundTransparency = params.BackgroundTransparency or 0
     params.Invisible = params.Invisible or false
+    params.AnchorPoint = params.AnchorPoint or Vector2.new(0,0)
     
     params.Unroundify = params.Unroundify or false
     
@@ -341,7 +342,7 @@ function JFR.NewBoard(name, parent, params, mainboard)
     inst.BackgroundColor3 = params.BackgroundColor3
     inst.BorderColor3     = params.BorderColor3
     inst.BorderSizePixel  = 0
-    inst.AnchorPoint      = Vector2.new(0,0)
+    inst.AnchorPoint      = params.AnchorPoint
     inst.Name             = (mainboard and name) or IIII()
     inst.Position         = params.Position
     inst.BackgroundTransparency = params.BackgroundTransparency
