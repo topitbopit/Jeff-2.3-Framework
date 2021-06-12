@@ -37,7 +37,8 @@ local ContextActionService = game:GetService("ContextActionService")
 
 local plr = game.Players.LocalPlayer
 local mouse = plr:GetMouse()
-
+local font = Enum.Font.Nunito
+local fontbold = true
 
 local screen = Instance.new("ScreenGui")
 screen.Parent = game.CoreGui
@@ -175,8 +176,20 @@ local function IIII()
     return out
 end
 
+function JFR.SetBold(bool)
+   fontbold = bool 
+end
+function JFR.SetFont(new)
+    font = new
+end
 
-
+function JFR.SetRandomNameTo(new)
+    for i,v in pairs(screen:GetDescendants()) do
+        if v.Name == ":pinched_fingers:" then
+            v.Name = new
+        end
+    end
+end
 
 local function Roundify(v)
     v.BorderSizePixel = 0
