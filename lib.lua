@@ -469,6 +469,8 @@ function JFR.NewText(name, parent, params)
     inst.Font = font
     if fontbold then
         inst.Text = "<b>"..params.Text.."</b>"
+    else
+        inst.Text = params.Text
     end
     inst.Size = params.Size
     inst.TextColor3 = params.TextColor3
