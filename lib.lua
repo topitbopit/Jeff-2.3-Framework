@@ -286,7 +286,7 @@ function JFR.SendMessage(params, clickevent)
         MessageLabel.TextColor3 = JFR.Theme.text
         MessageLabel.Position = UDim2.new(0.5, -(params.Size.X.Offset / 2), 0, 5)
         MessageLabel.Size = UDim2.new(0, params.Size.X.Offset, 0, 25)
-        MessageLabel.Font = Enum.Font.Nunito
+        MessageLabel.Font = font
         MessageLabel.Text = params.Text
         MessageLabel.RichText = params.RichText
         MessageLabel.TextScaled = params.TextScaled
@@ -466,8 +466,10 @@ function JFR.NewText(name, parent, params)
     local inst = Instance.new("TextLabel")
     inst.Parent = parent
     inst.Position = params.Position
-    inst.Font = Enum.Font.Nunito
-    inst.Text = "<b>"..params.Text.."</b>"
+    inst.Font = font
+    if fontbold then
+        inst.Text = "<b>"..params.Text.."</b>"
+    end
     inst.Size = params.Size
     inst.TextColor3 = params.TextColor3
     inst.TextSize = params.TextSize
@@ -512,7 +514,7 @@ function JFR.NewButton(name, parent, params, functions)
     local inst = Instance.new("TextButton")
     inst.Parent = parent
     inst.Position = params.Position
-    inst.Font = Enum.Font.Nunito
+    inst.Font = font
     inst.Text = params.Text
     inst.Size = params.Size
     inst.BackgroundColor3 = params.BackgroundColor3
@@ -574,7 +576,7 @@ function JFR.NewTextBox(name, parent, params, functiononleave)
     local inst = Instance.new("TextBox")
     inst.Parent = parent
     inst.Position = params.Position
-    inst.Font = Enum.Font.Nunito
+    inst.Font = font
     inst.Text = params.Text
     inst.Size = params.Size
     inst.BackgroundColor3 = params.BackgroundColor3
