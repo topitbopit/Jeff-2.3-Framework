@@ -39,6 +39,7 @@ local plr = game.Players.LocalPlayer
 local mouse = plr:GetMouse()
 local font = Enum.Font.Nunito
 local fontbold = true
+local roundamount = 10
 
 local screen = Instance.new("ScreenGui")
 screen.Parent = game.CoreGui
@@ -182,6 +183,9 @@ end
 function JFR.SetFont(new)
     font = new
 end
+function JFR.SetRoundAmount(new)
+    roundamount = new 
+end
 
 function JFR.SetRandomNameTo(new)
     for i,v in pairs(screen:GetDescendants()) do
@@ -196,7 +200,7 @@ local function Roundify(v)
     local e = Instance.new("UICorner")
     e.Parent = v
     e.Name = IIII()
-    e.CornerRadius = UDim.new(0, 10)
+    e.CornerRadius = UDim.new(0, roundamount)
 end
 
 
