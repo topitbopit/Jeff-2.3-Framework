@@ -628,7 +628,7 @@ function JFR.GetParentBoard()
 end
 
 function JFR.Ready(position)
-    position = position or UDim2.new(0.7, 0, 0.9, 0)
+    position = position or UDim2.new(0.7, 0, 0.7, 0)
 
     JFR.TweenPosition(JFR.ParentBoard, position, 0.75)
     
