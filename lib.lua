@@ -50,7 +50,7 @@ custommouse.Parent = screen
 custommouse.Size = UDim2.new(0, 64, 0, 64)
 custommouse.BackgroundTransparency = 1
 custommouse.Visible = false
-custommouse.Image = "rbxassetid://6912096183"
+custommouse.Image = "rbxassetid://6947646008"
 custommouse.ZIndex = 9999
 custommouse.ImageColor3 = JFR.Theme.shade9
 
