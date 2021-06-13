@@ -107,6 +107,7 @@ function JFR.ClickAnimation(object)
         f.Image = "rbxassetid://3570695787"
         f.ImageColor3 = JFR.Theme.text
         f.ImageTransparency = 0.3
+        f.BorderSizePixel = 0
         
         f.Size = UDim2.new(0, 0, 0, 0)
     	f.Position = UDim2.new(0.5, mouse.X - (object.AbsolutePosition.X + (object.Size.X.Offset / 2)), 0.5, 0)
@@ -436,6 +437,7 @@ function JFR.NewMenu(name, parent, params)
     inst.Parent = parent
     inst.BackgroundColor3 = params.BackgroundColor3
     inst.BorderColor3 = params.BorderColor3
+    inst.BorderSizePixel = 0 
     inst.AnchorPoint = Vector2.new(0,1)
     inst.Position = params.Position
     inst.Size = params.Size
@@ -486,6 +488,7 @@ function JFR.NewText(name, parent, params)
     inst.Size = params.Size
     inst.TextColor3 = params.TextColor3
     inst.TextSize = params.TextSize
+    inst.BorderSizePixel = 0 
     inst.TextXAlignment = Enum.TextXAlignment.Left
     inst.TextYAlignment = params.TextYAlignment
     inst.Name = IIII()
@@ -529,6 +532,7 @@ function JFR.NewButton(name, parent, params, functions)
     inst.Position = params.Position
     inst.Font = font
     inst.Text = params.Text
+    inst.BorderSizePixel = 0 
     inst.Size = params.Size
     inst.BackgroundColor3 = params.BackgroundColor3
     inst.TextColor3 = params.TextColor3
@@ -591,6 +595,7 @@ function JFR.NewTextBox(name, parent, params, functiononleave)
     inst.Position = params.Position
     inst.Font = font
     inst.Text = params.Text
+    inst.BorderSizePixel = 0 
     inst.Size = params.Size
     inst.BackgroundColor3 = params.BackgroundColor3
     inst.TextColor3 = params.TextColor3
