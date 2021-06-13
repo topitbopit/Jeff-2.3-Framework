@@ -40,6 +40,7 @@ local mouse = plr:GetMouse()
 local font = Enum.Font.Nunito
 local fontbold = true
 local roundamount = 10
+local roundifying = true
 
 local screen = Instance.new("ScreenGui")
 screen.Parent = game.CoreGui
@@ -186,6 +187,9 @@ end
 function JFR.SetRoundAmount(new)
     roundamount = new 
 end
+function JFR.SetRoundifyEnabled(new)
+    roundifying = new 
+end
 
 function JFR.SetRandomNameTo(new)
     for i,v in pairs(screen:GetDescendants()) do
@@ -196,11 +200,13 @@ function JFR.SetRandomNameTo(new)
 end
 
 local function Roundify(v)
-    v.BorderSizePixel = 0
-    local e = Instance.new("UICorner")
-    e.Parent = v
-    e.Name = IIII()
-    e.CornerRadius = UDim.new(0, roundamount)
+    if roundifying then
+        v.BorderSizePixel = 0
+        local e = Instance.new("UICorner")
+        e.Parent = v
+        e.Name = IIII()
+        e.CornerRadius = UDim.new(0, roundamount)
+    end
 end
 
 
@@ -647,5 +653,29 @@ function JFR.Ready(position)
         end
     end
 end
+
+function JFR.SetTheme(tab)
+    r = tab.r
+    g = tab.g
+    b = tab.b
+    
+    JFR.Theme = {
+        shadow = Color3.fromRGB(0,0,0),
+        shade1 = Color3.fromRGB(r*2,g*2,b*2),
+        shade2 = Color3.fromRGB(r*5,g*5,b*5),
+        shade3 = Color3.fromRGB(r*13,g*13,b*13),
+        shade4 = Color3.fromRGB(r*14,g*14,b*14),
+        shade5 = Color3.fromRGB(r*17,g*17,b*17),
+        shade6 = Color3.fromRGB(r*21,g*21,b*21),
+        shade7 = Color3.fromRGB(r*25,g*25,b*25),
+        shade8 = Color3.fromRGB(r*51,g*51,b*51),
+        shade9 = Color3.fromRGB(r*85,g*85,b*85),
+        text = Color3.fromRGB(255-(r*8),255-(g*8),255-(b*8)),
+        selected = Color3.fromRGB(r*40,g*40+20,b*40)
+    }
+    
+    custommouse.ImageColor3 = JFR.Theme.shade9
+end
+
 
 return JFR
