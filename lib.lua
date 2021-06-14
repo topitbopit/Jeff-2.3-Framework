@@ -220,7 +220,7 @@ function JFR.MakeSlider(cursor, parent, valuetable, customfunction)
     parent.InputBegan:Connect(function(input)
         if input.UserInputType == Enum.UserInputType.MouseButton1 then
             valuetable[1] = true
-            valuetable[2] = cursor.Position
+            valuetable[2] = parent.Position
             
             tdc = game:GetService("UserInputService").InputChanged:Connect(function(input2)
                 if input2.UserInputType == Enum.UserInputType.MouseMovement then
