@@ -459,11 +459,18 @@ function JFR.NewBoard(name, parent, params, mainboard)
         inst.MouseEnter:Connect(function()
             UserInputService.MouseIconEnabled = false
             custommouse.Visible = true
+            
+            tdc2 = UserInputService.InputChanged:Connect(function()
+                custommouse.Position = UDim2.new(0, mouse.X - 32, 0, mouse.Y - 32) 
+                
+            end)
         end)
         
         inst.MouseLeave:Connect(function()
             UserInputService.MouseIconEnabled = true
             custommouse.Visible = false
+            
+            tdc2:Disconnect()
         end)
     end
     
