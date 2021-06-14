@@ -712,12 +712,20 @@ function JFR.Ready(position)
     
     for i,v in pairs(screen:GetDescendants()) do
         if v:IsA("TextLabel") then
-            local v2 = v:Clone()
-            v2.Parent = v.Parent
-            v2.TextColor3 = JFR.Theme.shadow
-            v2.Position = v.Position + UDim2.new(0, 3, 0, 3)
-            v2.TextTransparency = 0.3
-            v2.ZIndex = v.ZIndex - 1
+            if not string.match(v.Text, "$noshadow") then
+                local v2 = v:Clone()
+                v2.Parent = v.Parent
+                v2.TextColor3 = JFR.Theme.shadow
+                v2.Position = v.Position + UDim2.new(0, 3, 0, 3)
+                v2.TextTransparency = 0.3
+                v2.ZIndex = v.ZIndex - 1
+                
+                v.GetPropertyChangedSignal("Text"):Connect(function()
+                    v2.Text = v
+                end)
+            else
+                v.Text = v.Text:gsub("$noshadow","") 
+            end
         end
     end
 end
