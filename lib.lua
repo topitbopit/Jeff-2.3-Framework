@@ -258,7 +258,7 @@ function JFR.MakeSlider(cursor, parent, valuetable, customfunction)
     parent.InputEnded:Connect(function(input)
         if input.UserInputType == Enum.UserInputType.MouseButton1 then
             valuetable[1] = false
-            tdc:Disconnect()
+            pcall(function() tdc:Disconnect() end)
             
         end
     end) 
@@ -455,7 +455,7 @@ function JFR.NewBoard(name, parent, params, mainboard)
         
         inst.AncestryChanged:Connect(function(_, parent)
             if not parent then
-                tdc:Disconnect() 
+                pcall(function() tdc:Disconnect() end)
                 UserInputService.MouseIconEnabled = true
             end
         end)
@@ -720,7 +720,7 @@ function JFR.Ready(position)
                 v2.TextTransparency = 0.3
                 v2.ZIndex = v.ZIndex - 1
                 
-                v.GetPropertyChangedSignal("Text"):Connect(function()
+                v:GetPropertyChangedSignal("Text"):Connect(function()
                     v2.Text = v
                 end)
             else
