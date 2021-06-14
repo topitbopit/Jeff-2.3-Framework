@@ -217,7 +217,7 @@ function JFR.MakeSlider(cursor, parent, valuetable, customfunction)
     local fsyd = (parent.Size.Y.Offset)
     local psxd = (cursor.Size.X.Offset)
     local psyd = (cursor.Size.Y.Offset)
-    cursor.InputBegan:Connect(function(input)
+    parent.InputBegan:Connect(function(input)
         if input.UserInputType == Enum.UserInputType.MouseButton1 then
             valuetable[1] = true
             valuetable[2] = cursor.Position
@@ -251,7 +251,7 @@ function JFR.MakeSlider(cursor, parent, valuetable, customfunction)
         end
     end)
     
-    cursor.InputEnded:Connect(function(input)
+    parent.InputEnded:Connect(function(input)
         if input.UserInputType == Enum.UserInputType.MouseButton1 then
             valuetable[1] = false
             tdc:Disconnect()
