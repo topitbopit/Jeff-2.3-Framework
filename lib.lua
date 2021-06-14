@@ -222,15 +222,15 @@ function JFR.MakeSlider(cursor, parent, valuetable, customfunction)
             valuetable[1] = true
             valuetable[2] = cursor.Position
             
-            JFR.TweenPosition(cursor, UDim2.new(0, input.Position.X - parent.AbsolutePosition.X, 0, input.Position.Y - parent.AbsolutePosition.Y), 0.25, nil, Enum.EasingStyle.Exponential)
-            valuetable[3] = input.Position.X - parent.AbsolutePosition.X
-            valuetable[4] = input.Position.Y - parent.AbsolutePosition.Y
+            JFR.TweenPosition(cursor, UDim2.new(0, input.Position.X - parent.AbsolutePosition.X - 3, 0, input.Position.Y - parent.AbsolutePosition.Y - 3), 0.25, nil, Enum.EasingStyle.Exponential)
+            valuetable[3] = input.Position.X - parent.AbsolutePosition.X - 3
+            valuetable[4] = input.Position.Y - parent.AbsolutePosition.Y - 3
             
             customfunction() 
             tdc = game:GetService("UserInputService").InputChanged:Connect(function(input2)
                 if input2.UserInputType == Enum.UserInputType.MouseMovement then
-                    local x = input2.Position.X - parent.AbsolutePosition.X
-                    local y = input2.Position.Y - parent.AbsolutePosition.Y
+                    local x = input2.Position.X - parent.AbsolutePosition.X - 3
+                    local y = input2.Position.Y - parent.AbsolutePosition.Y - 3
                     
                     if x > fsxd-psxd then
                         x = fsxd-psxd
@@ -721,7 +721,7 @@ function JFR.Ready(position)
                 v2.ZIndex = v.ZIndex - 1
                 
                 v:GetPropertyChangedSignal("Text"):Connect(function()
-                    v2.Text = v
+                    v2.Text = v.Text
                 end)
             else
                 v.Text = v.Text:gsub("$noshadow","") 
