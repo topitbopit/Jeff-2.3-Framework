@@ -1,3 +1,4 @@
+print("Loaded Jeff UI; current version = 1")
 local r = math.random(1,3)
 local g = math.random(1,3)
 local b = math.random(1,3)
