@@ -210,7 +210,55 @@ local function Roundify(v)
     end
 end
 
-
+function JFR.MakeSlider(cursor, parent, valuetable, customfunction)
+    customfunction = customfunction or function() end
+    
+    local fsxd = (parent.Size.X.Offset)
+    local fsyd = (parent.Size.Y.Offset)
+    local psxd = (cursor.Size.X.Offset)
+    local psyd = (cursor.Size.Y.Offset)
+    cursor.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 then
+            valuetable[1] = true
+            valuetable[2] = cursor.Position
+            
+            tdc = game:GetService("UserInputService").InputChanged:Connect(function(input2)
+                if input2.UserInputType == Enum.UserInputType.MouseMovement then
+                    local delta = input2.Position - input.Position
+                    local x = valuetable[2].X.Offset + delta.X
+                    local y = valuetable[2].Y.Offset + delta.Y
+                    
+                    if x > fsxd-psxd then
+                        x = fsxd-psxd
+                    elseif x < 0 then
+                        x = 0
+                    end
+                    
+                    if y > fsyd-psyd then
+                        y = fsyd-psyd
+                    elseif y < 0 then
+                        y = 0
+                    end
+                    
+                    
+                    valuetable[3] = x
+                    valuetable[4] = y
+                    JFR.TweenPosition(cursor, UDim2.new(valuetable[2].X.Scale, x, valuetable[2].Y.Scale, y), 0.25, nil, Enum.EasingStyle.Exponential)
+                    
+                    customfunction()
+                end
+            end)
+        end
+    end)
+    
+    cursor.InputEnded:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 then
+            valuetable[1] = false
+            tdc:Disconnect()
+            
+        end
+    end) 
+end
 
 function JFR.GetInstance(name)
     return JFR.Instances[name] or nil
@@ -377,6 +425,8 @@ function JFR.NewBoard(name, parent, params, mainboard)
                 Dragging[1] = true
                 Dragging[2] = input.Position --current position
                 Dragging[3] = inst.Position --starting position 
+                
+
             end
         end)
         
@@ -386,7 +436,7 @@ function JFR.NewBoard(name, parent, params, mainboard)
             end
         end)
         
-        connec = UserInputService.InputChanged:Connect(function(input)
+        tdc = UserInputService.InputChanged:Connect(function(input)
             if input.UserInputType == Enum.UserInputType.MouseMovement then
                 custommouse.Position = UDim2.new(0, mouse.X - 32, 0, mouse.Y - 32)--UDim2.new(input.Position.X.Scale, input.Position.X.Offset, input.Position.Y.Scale, input.Position.Y.Offset)
                 
@@ -399,7 +449,7 @@ function JFR.NewBoard(name, parent, params, mainboard)
         
         inst.AncestryChanged:Connect(function(_, parent)
             if not parent then
-                connec:Disconnect() 
+                tdc:Disconnect() 
                 UserInputService.MouseIconEnabled = true
             end
         end)
