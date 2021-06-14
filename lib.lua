@@ -389,7 +389,7 @@ function JFR.NewBoard(name, parent, params, mainboard)
     params.BackgroundTransparency = params.BackgroundTransparency or 0
     params.Invisible = params.Invisible or false
     params.AnchorPoint = params.AnchorPoint or Vector2.new(0,0)
-    
+    params.Nodrag = params.Nodrag or false
     params.Unroundify = params.Unroundify or false
     
     mainboard = mainboard or false
@@ -420,32 +420,34 @@ function JFR.NewBoard(name, parent, params, mainboard)
         JFR.ParentBoard = inst
         local Dragging = {}
         
-        inst.InputBegan:Connect(function(input)
-            if input.UserInputType == Enum.UserInputType.MouseButton1 then
-                Dragging[1] = true
-                Dragging[2] = input.Position --current position
-                Dragging[3] = inst.Position --starting position 
-                
-
-            end
-        end)
-        
-        inst.InputEnded:Connect(function(input)
-            if input.UserInputType == Enum.UserInputType.MouseButton1 then
-                Dragging[1] = false
-            end
-        end)
-        
-        tdc = UserInputService.InputChanged:Connect(function(input)
-            if input.UserInputType == Enum.UserInputType.MouseMovement then
-                custommouse.Position = UDim2.new(0, mouse.X - 32, 0, mouse.Y - 32)--UDim2.new(input.Position.X.Scale, input.Position.X.Offset, input.Position.Y.Scale, input.Position.Y.Offset)
-                
-                if Dragging[1] then
-                    local delta = input.Position - Dragging[2]
-                    JFR.TweenPosition(inst, UDim2.new(Dragging[3].X.Scale, Dragging[3].X.Offset + delta.X, Dragging[3].Y.Scale, Dragging[3].Y.Offset + delta.Y), 0.75)
+        if params.Nodrag == false then
+            inst.InputBegan:Connect(function(input)
+                if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                    Dragging[1] = true
+                    Dragging[2] = input.Position --current position
+                    Dragging[3] = inst.Position --starting position 
+                    
+    
                 end
-            end
-        end)
+            end)
+            
+            inst.InputEnded:Connect(function(input)
+                if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                    Dragging[1] = false
+                end
+            end)
+            
+            tdc = UserInputService.InputChanged:Connect(function(input)
+                if input.UserInputType == Enum.UserInputType.MouseMovement then
+                    custommouse.Position = UDim2.new(0, mouse.X - 32, 0, mouse.Y - 32)--UDim2.new(input.Position.X.Scale, input.Position.X.Offset, input.Position.Y.Scale, input.Position.Y.Offset)
+                    
+                    if Dragging[1] then
+                        local delta = input.Position - Dragging[2]
+                        JFR.TweenPosition(inst, UDim2.new(Dragging[3].X.Scale, Dragging[3].X.Offset + delta.X, Dragging[3].Y.Scale, Dragging[3].Y.Offset + delta.Y), 0.75)
+                    end
+                end
+            end)
+        end
         
         inst.AncestryChanged:Connect(function(_, parent)
             if not parent then
