@@ -222,13 +222,15 @@ function JFR.MakeSlider(cursor, parent, valuetable, customfunction)
             valuetable[1] = true
             valuetable[2] = cursor.Position
             
-            JFR.TweenPosition(cursor, UDim2.new(valuetable[2].X.Scale, input.Position.X, valuetable[2].Y.Scale, input.Position.Y), 0.25, nil, Enum.EasingStyle.Exponential)
+            JFR.TweenPosition(cursor, UDim2.new(0, input.Position.X - parent.AbsolutePosition.X, 0, input.Position.Y - parent.AbsolutePosition.Y), 0.25, nil, Enum.EasingStyle.Exponential)
+            valuetable[3] = input.Position.X - parent.AbsolutePosition.X
+            valuetable[4] = input.Position.Y - parent.AbsolutePosition.Y
             
+            customfunction() 
             tdc = game:GetService("UserInputService").InputChanged:Connect(function(input2)
                 if input2.UserInputType == Enum.UserInputType.MouseMovement then
-                    local delta = input2.Position - input.Position
-                    local x = valuetable[2].X.Offset + delta.X
-                    local y = valuetable[2].Y.Offset + delta.Y
+                    local x = input2.Position.X - parent.AbsolutePosition.X
+                    local y = input2.Position.Y - parent.AbsolutePosition.Y
                     
                     if x > fsxd-psxd then
                         x = fsxd-psxd
@@ -245,8 +247,8 @@ function JFR.MakeSlider(cursor, parent, valuetable, customfunction)
                     
                     valuetable[3] = x
                     valuetable[4] = y
-                    JFR.TweenPosition(cursor, UDim2.new(valuetable[2].X.Scale, x, valuetable[2].Y.Scale, y), 0.25, nil, Enum.EasingStyle.Exponential)
-                    
+                    JFR.TweenPosition(cursor, UDim2.new(0, x, 0, y), 0.25, nil, Enum.EasingStyle.Exponential)
+
                     customfunction()
                 end
             end)
@@ -742,6 +744,5 @@ function JFR.SetTheme(tab)
     
     custommouse.ImageColor3 = JFR.Theme.shade9
 end
-
 
 return JFR
