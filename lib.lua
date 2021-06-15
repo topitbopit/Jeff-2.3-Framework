@@ -1,9 +1,30 @@
-print("Loaded Jeff UI; current version = 1")
+print("Loaded Jeff UI; current version = 1.1.0")
+
+
+local PlayerService        = game:GetService("Players")
+local TeamsService         = game:GetService("Teams")
+local TweenService         = game:GetService("TweenService")
+local RunService           = game:GetService("RunService")
+local MarketService        = game:GetService("MarketplaceService")
+local UserInputService     = game:GetService("UserInputService")
+local ContextActionService = game:GetService("ContextActionService")
+
+local plr = game.Players.LocalPlayer
+local mouse = plr:GetMouse()
+local font = Enum.Font.Nunito
+local fontbold = true
+local roundamount = 10
+local roundifying = true
+
+
+
+
+
+
+
 local r = math.random(1,3)
 local g = math.random(1,3)
 local b = math.random(1,3)
-
-
 
 local JFR = {}
 
@@ -26,23 +47,6 @@ JFR.Theme = {
 }
 
 
-
-
-local PlayerService        = game:GetService("Players")
-local TeamsService         = game:GetService("Teams")
-local TweenService         = game:GetService("TweenService")
-local RunService           = game:GetService("RunService")
-local MarketService        = game:GetService("MarketplaceService")
-local UserInputService     = game:GetService("UserInputService")
-local ContextActionService = game:GetService("ContextActionService")
-
-local plr = game.Players.LocalPlayer
-local mouse = plr:GetMouse()
-local font = Enum.Font.Nunito
-local fontbold = true
-local roundamount = 10
-local roundifying = true
-
 local screen = Instance.new("ScreenGui")
 screen.Parent = game.CoreGui
 
@@ -54,6 +58,62 @@ custommouse.Visible = false
 custommouse.Image = "rbxassetid://6947646008"
 custommouse.ZIndex = 9999
 custommouse.ImageColor3 = JFR.Theme.shade9
+
+
+local funnynames = {
+    "Sponsored by Jeff GUI",
+    ":pinched_fingers:",
+    "cry more",
+    "wassup "..plr.Name,
+    "nice "..screen.AbsoluteSize.Y.."p resolution",
+    "only retards use PlayerGui",
+    "figure it out",
+    "iiIiIIiiIiI- wait",
+    "😎",
+    "hello fellow redditors",
+    "please shut up about hoops",
+    "{popular thing}? whats that?",
+    "this wil be roblox graphic in 2014",
+    "IY>cmdx & im tired of pretending its not",
+    "brainlets actually cry about krnl keys lmao",
+    "waaaaaaaaaaah",
+    "bone marrow baby",
+    "go get darksploit or something",
+    "go choke on a fork or something",
+    "if then do do end end else end",
+    "go eat a cinnamon roll",
+    "lol you actually get money off a hoops script",
+    "how tf does a ui library suck that bad",
+    "i started lua 4 months ago and you're worse?",
+    "lmao lmao lmao",
+    "laughing crying laughing crying",
+    "roblox should fix scrollingguis wtf",
+    "imagine userinput and not contextaction",
+    "runservice.heartbeat?? ew",
+    "go drive a car or something",
+    "i said touch grass not eat it wtf",
+    "yor moma"
+    
+}
+
+local function GenerateName()
+
+    return funnynames[math.random(1,#funnynames)]
+end
+
+
+local function Roundify(v)
+    if roundifying then
+        v.BorderSizePixel = 0
+        local e = Instance.new("UICorner")
+        e.Parent = v
+        e.Name = GenerateName()
+        e.CornerRadius = UDim.new(0, roundamount)
+    end
+end
+
+
+
 
 function JFR.OpenObject(object, timing, dir)
     timing = timing or 0.25 
@@ -174,11 +234,6 @@ function JFR.Async(func)
     
 end
 
-local function IIII()
-    local out = ":pinched_fingers:"
-
-    return out
-end
 
 function JFR.SetBold(bool)
    fontbold = bool 
@@ -201,15 +256,7 @@ function JFR.SetRandomNameTo(new)
     end
 end
 
-local function Roundify(v)
-    if roundifying then
-        v.BorderSizePixel = 0
-        local e = Instance.new("UICorner")
-        e.Parent = v
-        e.Name = IIII()
-        e.CornerRadius = UDim.new(0, roundamount)
-    end
-end
+
 
 function JFR.MakeSlider(cursor, parent, valuetable, customfunction)
     customfunction = customfunction or function() end
@@ -407,7 +454,7 @@ function JFR.NewBoard(name, parent, params, mainboard)
     inst.BorderColor3     = params.BorderColor3
     inst.BorderSizePixel  = 0
     inst.AnchorPoint      = params.AnchorPoint
-    inst.Name             = (mainboard and name) or IIII()
+    inst.Name             = (mainboard and name) or GenerateName()
     inst.Position         = params.Position
     inst.BackgroundTransparency = params.BackgroundTransparency
     inst.Size             = params.Size
@@ -512,7 +559,7 @@ function JFR.NewMenu(name, parent, params)
     inst.ScrollBarImageTransparency = 0
     inst.Active = true
     inst.Visible = not params.Invisible
-    inst.Name = IIII()
+    inst.Name = GenerateName()
     inst.ZIndex = params.ZIndex
 
     JFR.Instances[name] = inst
@@ -555,7 +602,7 @@ function JFR.NewText(name, parent, params)
     inst.BorderSizePixel = 0 
     inst.TextXAlignment = Enum.TextXAlignment.Left
     inst.TextYAlignment = params.TextYAlignment
-    inst.Name = IIII()
+    inst.Name = GenerateName()
     inst.ZIndex = params.ZIndex
     inst.Visible = not params.Invisible
     inst.RichText = params.RichText
@@ -602,7 +649,7 @@ function JFR.NewButton(name, parent, params, functions)
     inst.TextColor3 = params.TextColor3
     inst.TextSize = params.TextSize
     inst.RichText = params.RichText
-    inst.Name = IIII()
+    inst.Name = GenerateName()
     inst.Visible = not params.Invisible
     inst.ZIndex = params.ZIndex
     inst.BackgroundTransparency = 0
@@ -666,7 +713,7 @@ function JFR.NewTextBox(name, parent, params, functiononleave)
     inst.TextSize = params.TextSize
     inst.PlaceholderText = params.PlaceholderText
     inst.RichText = params.RichText
-    inst.Name = IIII()
+    inst.Name = GenerateName()
     inst.ZIndex = params.ZIndex
     inst.BackgroundTransparency = 0
     inst.ClipsDescendants = true
