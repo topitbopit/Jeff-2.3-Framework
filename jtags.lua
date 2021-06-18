@@ -86,7 +86,7 @@ if _G.JTagsLoaded ~= true then
         coroutine.resume(coroutine.create(e)) 
     end
     
-    PlayerService.PlayerAdded:Connect(function(player)
+    ps.PlayerAdded:Connect(function(player)
         Thread(function() 
             for _,data in pairs(database) do
                 if player.Name == data[1] then
