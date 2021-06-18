@@ -4,7 +4,7 @@ if _G.JTagsLoaded ~= true then
     local database = loadstring(game:HttpGet('https://raw.githubusercontent.com/topitbopit/jeff-tags/main/database.lua'))()
     
     
-    local ps = game:GetService("Players")
+    local playerservice = game:GetService("Players")
     
     local function AddJTag(char, data)
     
@@ -86,7 +86,7 @@ if _G.JTagsLoaded ~= true then
         coroutine.resume(coroutine.create(e)) 
     end
     
-    ps.PlayerAdded:Connect(function(player)
+    playerservice.PlayerAdded:Connect(function(player)
         Thread(function() 
             for _,data in pairs(database) do
                 if player.Name == data[1] then
@@ -101,7 +101,7 @@ if _G.JTagsLoaded ~= true then
         end)
     end)
     
-    for i,plr in pairs(game.Players:GetChildren()) do 
+    for _, plr in pairs(game.Players:GetChildren()) do 
         Thread(function() 
             for _,data in pairs(database) do
                 if plr.Name == data[1] then
