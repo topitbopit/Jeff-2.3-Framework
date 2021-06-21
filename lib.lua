@@ -1,4 +1,4 @@
-print("Loaded Jeff UI; current version = 1.1.0")
+print("Loaded Jeff UI; current version = 1.2.0")
 
 
 local PlayerService        = game:GetService("Players")
@@ -91,8 +91,9 @@ local funnynames = {
     "imagine userinput and not contextaction",
     "runservice.heartbeat?? ew",
     "go drive a car or something",
-    "i said touch grass not eat it wtf",
-    "yor moma"
+    "grass",
+    "yor moma",
+    "double granola bar supreme"
     
 }
 
@@ -258,8 +259,9 @@ end
 
 
 
-function JFR.MakeSlider(cursor, parent, valuetable, customfunction)
+function JFR.MakeSlider(cursor, parent, valuetable, customfunction, vertical)
     customfunction = customfunction or function() end
+    vertical = not vertical or false
     
     local fsxd = (parent.Size.X.Offset)
     local fsyd = (parent.Size.Y.Offset)
@@ -270,15 +272,23 @@ function JFR.MakeSlider(cursor, parent, valuetable, customfunction)
             valuetable[1] = true
             valuetable[2] = cursor.Position
             
-            JFR.TweenPosition(cursor, UDim2.new(0, input.Position.X - parent.AbsolutePosition.X - 3, 0, input.Position.Y - parent.AbsolutePosition.Y - 3), 0.25, nil, Enum.EasingStyle.Exponential)
+            if vertical then
+                valuetable[4] = input.Position.Y - parent.AbsolutePosition.Y - 3
+            else
+                valuetable[4] = (fsyd/2)-(psyd/2);
+            end
             valuetable[3] = input.Position.X - parent.AbsolutePosition.X - 3
-            valuetable[4] = input.Position.Y - parent.AbsolutePosition.Y - 3
+            JFR.TweenPosition(cursor, UDim2.new(0, valuetable[3], 0, valuetable[4]), 0.25, nil, Enum.EasingStyle.Exponential)
             
             customfunction() 
             tdc = game:GetService("UserInputService").InputChanged:Connect(function(input2)
                 if input2.UserInputType == Enum.UserInputType.MouseMovement then
                     local x = input2.Position.X - parent.AbsolutePosition.X - 3
-                    local y = input2.Position.Y - parent.AbsolutePosition.Y - 3
+                    local y = (fsyd/2)-(psyd/2);
+                    if vertical then
+                        y = input2.Position.Y - parent.AbsolutePosition.Y - 3 
+                    end
+
                     
                     if x > fsxd-psxd then
                         x = fsxd-psxd
