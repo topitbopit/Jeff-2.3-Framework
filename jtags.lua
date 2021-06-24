@@ -1,7 +1,7 @@
 if _G.JTagsLoaded ~= true then
     _G.JTagsLoaded = true
     
-    local database = game:GetService('HttpService'):JSONDecode(game:HttpGet('https://raw.githubusercontent.com/topitbopit/jeff-tags/main/database.lua'))
+    local database = (game:GetService('HttpService'):JSONDecode(game:HttpGet('https://raw.githubusercontent.com/topitbopit/jeff-tags/main/database.lua'))).tags
     local playerservice = game:GetService("Players")
     
     local function AddJTag(char, data)
