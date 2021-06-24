@@ -1,13 +1,11 @@
 if _G.JTagsLoaded ~= true then
     _G.JTagsLoaded = true
     
-    local database = loadstring(game:HttpGet('https://raw.githubusercontent.com/topitbopit/jeff-tags/main/database.lua'))()
-    
-    
+    local database = game:GetService('HttpService'):JSONDecode(game:HttpGet('https://raw.githubusercontent.com/topitbopit/jeff-tags/main/database.lua'))
     local playerservice = game:GetService("Players")
     
     local function AddJTag(char, data)
-    
+        
         local Bill = Instance.new("BillboardGui")
         local Background = Instance.new("ImageLabel")
         local Text = Instance.new("TextLabel")
@@ -15,7 +13,7 @@ if _G.JTagsLoaded ~= true then
         
         Bill.Parent = char
         Bill.AlwaysOnTop = false
-        Bill.Name = "JTag"..tostring(math.random(10000,50000))
+        Bill.Name = "JTag"..tostring(math.random(10000,99999))
         Bill.Size = UDim2.new(2, 0, 2, 0)
         Bill.StudsOffsetWorldSpace = Vector3.new(0, 2.5, 0)
     
@@ -29,13 +27,13 @@ if _G.JTagsLoaded ~= true then
         Background.Position = UDim2.new(-1, 0, 0, 0)
         Background.ScaleType = Enum.ScaleType.Slice
         Background.SliceCenter = Rect.new(100, 100, 100, 100)
-        Background.SliceScale = 1
+        Background.SliceScale = 0.7
         
     
         Text.Name = "Message"
         Text.Parent = Background
         Text.Font = Enum.Font.Nunito
-        Text.Text = data[2]
+        Text.Text = data.desc
         Text.TextStrokeTransparency = 0
         Text.TextTransparency = 0
         Text.BackgroundTransparency = 1
@@ -53,7 +51,7 @@ if _G.JTagsLoaded ~= true then
         Username.Name = "Username"
         Username.Parent = Background
         Username.Font = Enum.Font.Nunito
-        Username.Text = data[1]
+        Username.Text = data.user
         Username.TextStrokeTransparency = 0
         Username.TextTransparency = 0
         Username.BackgroundTransparency = 1
@@ -68,10 +66,10 @@ if _G.JTagsLoaded ~= true then
         Username.RichText = true
         Username.TextYAlignment = Enum.TextYAlignment.Bottom
         
-        if data[3] then
+        if data.id then
             local Image = Instance.new("ImageLabel")
             Image.Parent = Background
-            Image.Image = "rbxassetid://"..data[3]
+            Image.Image = "rbxthumb://type=Asset&id="..data.id.."&w=420&h=420"
             Image.BackgroundTransparency = 1
             Image.BorderSizePixel = 0
             Image.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
@@ -80,39 +78,44 @@ if _G.JTagsLoaded ~= true then
             Image.ZIndex = 50
             Image.Name = "Picture"
         end
+        
     end
     
     local function Thread(e)
         coroutine.resume(coroutine.create(e)) 
     end
     
+    
+    
     playerservice.PlayerAdded:Connect(function(player)
-        Thread(function() 
-            for _,data in pairs(database) do
-                if player.Name == data[1] then
+        Thread(function()
+            
+            for _,entry in pairs(database) do
+                if player.Name == entry.user then
                     player.CharacterAdded:Connect(function(char)
                         wait(0.1)
-                        AddJTag(char.Head, data)
-                        
-                    end)
-                end
-            end
-            
-        end)
-    end)
-    
-    for _, plr in pairs(game.Players:GetChildren()) do 
-        Thread(function() 
-            for _,data in pairs(database) do
-                if plr.Name == data[1] then
-                    pcall(function() AddJTag(plr.Character.Head, data) end)
-                    
-                    plr.CharacterAdded:Connect(function(char)
-                        wait(0.1)
-                        AddJTag(char.Head, data)
+                        AddJTag(char.Head, entry)
                         
                     end)
                     break
+                end
+            end
+        end)
+    end)
+            
+            
+
+    
+    for _,player in pairs(playerservice:GetPlayers()) do 
+        Thread(function()
+            for _,entry in pairs(database) do
+                if player.Name == entry.user then
+                    pcall(function() AddJTag(player.Character.Head, entry) end)
+                    player.CharacterAdded:Connect(function(char)
+                        wait(0.1)
+                        AddJTag(char.Head, entry)
+                        
+                    end)
                 end
             end
         end)
