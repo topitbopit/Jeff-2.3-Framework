@@ -1,4 +1,4 @@
-print("Loaded Jeff UI; current version = 1.2.1")
+print("Loaded Jeff UI; current version = 1.2.2")
 
 
 local PlayerService        = game:GetService("Players")
@@ -65,35 +65,23 @@ local funnynames = {
     ":pinched_fingers:",
     "cry more",
     "wassup "..plr.Name,
-    "nice "..screen.AbsoluteSize.Y.."p resolution",
-    "only retards use PlayerGui",
     "figure it out",
-    "iiIiIIiiIiI- wait",
+    "iiIiIIiiIiI",
     "😎",
     "hello fellow redditors",
-    "please shut up about hoops",
-    "{popular thing}? whats that?",
     "this wil be roblox graphic in 2014",
-    "IY>cmdx & im tired of pretending its not",
-    "brainlets actually cry about krnl keys lmao",
     "waaaaaaaaaaah",
     "bone marrow baby",
-    "go get darksploit or something",
-    "go choke on a fork or something",
     "if then do do end end else end",
     "go eat a cinnamon roll",
-    "lol you actually get money off a hoops script",
-    "how tf does a ui library suck that bad",
-    "i started lua 4 months ago and you're worse?",
-    "lmao lmao lmao",
     "laughing crying laughing crying",
-    "roblox should fix scrollingguis wtf",
-    "imagine userinput and not contextaction",
-    "runservice.heartbeat?? ew",
-    "go drive a car or something",
     "grass",
     "yor moma",
-    "double granola bar supreme"
+    "double granola bar supreme",
+    "ow i just hurt my foot :(",
+    "4 rigabyete of ram?>?? wowwe!",
+    "penne pasta",
+    "penis cheese"
     
 }
 
