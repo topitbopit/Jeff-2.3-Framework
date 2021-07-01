@@ -1,4 +1,4 @@
-print("Loaded Jeff UI; current version = 1.2.0")
+print("Loaded Jeff UI; current version = 1.2.1")
 
 
 local PlayerService        = game:GetService("Players")
@@ -152,10 +152,11 @@ function JFR.TweenSize(object, dest, timing, dir)
     game.TweenService:Create(object,TweenInfo.new(timing, Enum.EasingStyle.Exponential, dir),{ Size = dest  }):Play()
 end
 
-function JFR.TweenCustom(object, dest, timing, dir)
+function JFR.TweenCustom(object, dest, timing, dir, style)
     timing = timing or 0.25
     dir = dir or Enum.EasingDirection.Out
-    game.TweenService:Create(object,TweenInfo.new(timing, Enum.EasingStyle.Exponential, dir),dest):Play()
+    style = style or Enum.EasingStyle.Exponential
+    game.TweenService:Create(object,TweenInfo.new(timing, style, dir),dest):Play()
 end
 
 function JFR.ClickAnimation(object)
@@ -753,6 +754,88 @@ function JFR.NewTextBox(name, parent, params, functiononleave)
     end)
         
     return inst
+end
+
+function JFR.NewDropdown(name, parent, params, items)
+    params.Position = params.Position or UDim2.new(0, 0, 0, 0)
+    params.Size = params.Size or UDim2.new(0, 400, 0, 200)
+    params.ZIndex = params.ZIndex or parent.ZIndex + 20
+    params.Text = params.Text or "add text"
+    params.TextSize = params.TextSize or 19
+    params.RichText = params.RichText or true
+    params.BackgroundColor3 = params.BackgroundColor3 or JFR.Theme.shade7
+    params.BorderColor3 = params.BorderColor3 or JFR.Theme.shade1
+    params.TextColor3 = params.TextColor3 or JFR.Theme.text
+    params.Invisible = params.Invisible or false
+    params.Choice = params.Choice or "none"
+    
+    params.Unroundify = params.Unroundify or false
+    
+    local dd_open = false
+    
+    
+    
+    local bg = Instance.new("Frame")
+    bg.Parent = parent
+    bg.BackgroundColor3 = JFR.Theme.shade6
+    bg.BorderColor3 = params.BorderColor3
+    bg.BorderSizePixel = 0 
+    bg.AnchorPoint = Vector2.new(0,0)
+    bg.Position = params.Position + UDim2.new(0, 0, 0, params.Size.Y.Offset / 2)
+    bg.Size = UDim2.new(0, params.Size.X.Offset, 0, 0)
+    bg.Active = true
+    bg.Name = GenerateName()
+    bg.ZIndex = params.ZIndex
+    bg.ClipsDescendants = true
+    
+    local toggle = Instance.new("TextButton")
+    toggle.Font = font
+    toggle.Parent = parent
+    toggle.Position = params.Position
+    toggle.Name = GenerateName()
+    toggle.ZIndex = params.ZIndex + 20
+    toggle.Text = params.Text.." ("..params.Choice..") "..(dd_open and "-" or "+")
+    toggle.BorderSizePixel = 0 
+    toggle.Size = params.Size
+    toggle.BackgroundColor3 = params.BackgroundColor3
+    toggle.TextColor3 = params.TextColor3
+    toggle.TextSize = params.TextSize
+    toggle.RichText = params.RichText
+    
+    local ui = Instance.new("UIListLayout")
+    ui.Parent = bg
+    ui.FillDirection = Enum.FillDirection.Vertical
+    ui.SortOrder = Enum.SortOrder.LayoutOrder
+    ui.VerticalAlignment = Enum.VerticalAlignment.Bottom
+    ui.HorizontalAlignment = Enum.HorizontalAlignment.Center
+    
+    
+    local function dd_toggle() 
+        dd_open = not dd_open
+        if dd_open then
+            JFR.TweenCustom(bg, {Size = UDim2.new(0, params.Size.X.Offset, 0, (#items * params.Size.Y.Offset) + params.Size.Y.Offset / 2)}, 0.5) 
+        else
+            JFR.TweenCustom(bg, {Size = UDim2.new(0, params.Size.X.Offset, 0, 0)}, 0.5)
+        end
+        toggle.Text = params.Text.." ("..params.Choice..") "..(dd_open and "-" or "+")
+    end
+    
+    for i,entry in pairs(items) do
+        JFR.NewButton(name.."Button-"..tostring(i), bg, {Size = params.Size, Text = entry.Text, Unroundify = true}, {on = function() 
+            params.Choice = entry.Text
+            toggle.Text = params.Text.." ("..params.Choice..") "..(dd_open and "-" or "+")
+            entry.on() 
+            
+        end})        
+    end
+    
+    
+    toggle.MouseButton1Click:Connect(dd_toggle)
+    
+    Roundify(toggle)
+    Roundify(bg)
+    
+    return bg
 end
 
 function JFR.GetScreen()
