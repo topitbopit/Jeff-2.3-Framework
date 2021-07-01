@@ -1,4 +1,4 @@
-print("Loaded Jeff UI; current version = 1.2.2")
+print("Loaded Jeff UI; current version = 1.2.3")
 
 
 local PlayerService        = game:GetService("Players")
@@ -796,21 +796,43 @@ function JFR.NewDropdown(name, parent, params, items)
     ui.SortOrder = Enum.SortOrder.LayoutOrder
     ui.VerticalAlignment = Enum.VerticalAlignment.Bottom
     ui.HorizontalAlignment = Enum.HorizontalAlignment.Center
+    ui.Name = GenerateName()
+    
+    local corner = Instance.new("Frame")
+    corner.Parent = parent
+    corner.BackgroundColor3 = JFR.Theme.shade7
+    corner.BorderSizePixel = 0 
+    corner.AnchorPoint = Vector2.new(0,0)
+    corner.Position = params.Position
+    corner.Size = UDim2.new(0, params.Size.X.Offset, 0, params.Size.Y.Offset)
+    corner.Active = true
+    corner.Name = GenerateName()
+    corner.ZIndex = params.ZIndex - 1
     
     
     local function dd_toggle() 
         dd_open = not dd_open
         if dd_open then
             JFR.TweenCustom(bg, {Size = UDim2.new(0, params.Size.X.Offset, 0, (#items * params.Size.Y.Offset) + params.Size.Y.Offset / 2)}, 0.5) 
+            JFR.TweenCustom(corner, {Position = UDim2.new(params.Position.X.Scale, params.Position.X.Offset, 0, params.Position.Y.Offset+(#items * params.Size.Y.Offset)+params.Size.Y.Offset/2)}, 0.5) 
+            JFR.OpenObject(toggle)
         else
             JFR.TweenCustom(bg, {Size = UDim2.new(0, params.Size.X.Offset, 0, 0)}, 0.5)
+            JFR.TweenCustom(corner, {Position = UDim2.new(params.Position.X.Scale, params.Position.X.Offset, 0, params.Position.Y.Offset)}, 0.5) 
+            JFR.CloseObject(toggle)
         end
         toggle.Text = params.Text.." ("..params.Choice..") "..(dd_open and "-" or "+")
     end
     
     for i,entry in pairs(items) do
         JFR.NewButton(name.."Button-"..tostring(i), bg, {Size = params.Size, Text = entry.Text, Unroundify = true}, {on = function() 
-            params.Choice = entry.Text
+            if entry.Text:len() > 16 then
+                params.Choice = entry.Text:sub(1,16)
+                params.Choice = params.Choice:match('^(.*%S)%s*$') --ty ben tasker
+                params.Choice = params.Choice.."..."
+            else
+                params.Choice = entry.Text
+            end
             toggle.Text = params.Text.." ("..params.Choice..") "..(dd_open and "-" or "+")
             entry.on() 
             
@@ -822,6 +844,8 @@ function JFR.NewDropdown(name, parent, params, items)
     
     Roundify(toggle)
     Roundify(bg)
+    Roundify(corner)
+    
     
     return bg
 end
@@ -881,5 +905,6 @@ function JFR.SetTheme(tab)
     
     custommouse.ImageColor3 = JFR.Theme.shade9
 end
+
 
 return JFR
