@@ -1,4 +1,4 @@
-print("Loaded Jeff UI; current version = 1.2.3")
+print("Loaded Jeff UI; current version = 1.2.4")
 
 
 local PlayerService        = game:GetService("Players")
@@ -539,6 +539,7 @@ function JFR.NewMenu(name, parent, params)
     params.BackgroundColor3 = params.BackgroundColor3 or JFR.Theme.shade3
     params.BorderColor3 = params.BorderColor3 or JFR.Theme.shade1
     params.Invisible = params.Invisible or false
+    params.AnchorPoint = params.AnchorPoint or Vector2.new(0, 1)
     
     params.Unroundify = params.Unroundify or false
     
@@ -548,7 +549,7 @@ function JFR.NewMenu(name, parent, params)
     inst.BackgroundColor3 = params.BackgroundColor3
     inst.BorderColor3 = params.BorderColor3
     inst.BorderSizePixel = 0 
-    inst.AnchorPoint = Vector2.new(0,1)
+    inst.AnchorPoint = params.AnchorPoint
     inst.Position = params.Position
     inst.Size = params.Size
     inst.CanvasSize = params.CanvasSize
