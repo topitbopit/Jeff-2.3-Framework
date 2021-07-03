@@ -1,4 +1,4 @@
-print("Loaded Jeff UI; current version = 1.2.4")
+print("Loaded Jeff UI; current version = 1.2.4.1")
 
 
 local PlayerService        = game:GetService("Players")
@@ -81,7 +81,12 @@ local funnynames = {
     "ow i just hurt my foot :(",
     "4 rigabyete of ram?>?? wowwe!",
     "penne pasta",
-    "penis cheese"
+    "penis cheese",
+    "among us",
+    "among sus poster",
+    "joe biden is a sussy baka",
+    "among us is a fantastic game",
+    "among us in real life"
     
 }
 
@@ -853,6 +858,10 @@ end
 
 function JFR.GetScreen()
    return screen 
+end
+
+function JFR.GetMouse()
+    return custommouse 
 end
 
 function JFR.GetParentBoard()
