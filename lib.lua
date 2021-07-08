@@ -1,4 +1,4 @@
-print("Loaded Jeff UI; current version = 1.2.4.1")
+print("Loaded Jeff UI; current version = 1.2.5")
 
 
 local PlayerService        = game:GetService("Players")
@@ -252,6 +252,9 @@ function JFR.SetRandomNameTo(new)
 end
 
 
+function JFR.Roundify(inst)
+    Roundify(inst)
+end
 
 function JFR.MakeSlider(cursor, parent, valuetable, customfunction, vertical)
     customfunction = customfunction or function() end
@@ -447,6 +450,7 @@ function JFR.NewBoard(name, parent, params, mainboard)
     params.AnchorPoint = params.AnchorPoint or Vector2.new(0,0)
     params.Nodrag = params.Nodrag or false
     params.Unroundify = params.Unroundify or false
+    params.ClipsDescendants = params.ClipsDescendants or false
     
     mainboard = mainboard or false
     
@@ -465,6 +469,7 @@ function JFR.NewBoard(name, parent, params, mainboard)
     inst.Active           = true
     inst.Visible          = not params.Invisible
     inst.ZIndex           = params.ZIndex
+    inst.ClipsDescendants = params.ClipsDescendants
 
     JFR.Instances[name] = inst
     
