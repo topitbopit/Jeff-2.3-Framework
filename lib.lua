@@ -1,4 +1,4 @@
-print("Loaded Jeff UI; current version = 1.2.5")
+print("Loaded Jeff UI; current version = 1.2.5.1")
 
 
 local PlayerService        = game:GetService("Players")
@@ -86,7 +86,11 @@ local funnynames = {
     "among sus poster",
     "joe biden is a sussy baka",
     "among us is a fantastic game",
-    "among us in real life"
+    "among us in real life",
+    "roblox serveres roblox windows 2005",
+    "linux hacvk",
+    "hack() = true ; do end and",
+    "I haven't played phas in a while"
     
 }
 
@@ -340,14 +344,14 @@ function JFR.GetInstanceValueByName(name)
     return JFR.InstanceStates[name] or nil
 end
 
-function JFR.GetInstanceTable(name)
+function JFR.GetInstanceTable()
     return JFR.Instances
 end
-function JFR.GetInstanceValueTable(name)
+function JFR.GetInstanceValueTable()
     return JFR.InstanceStates
 end
 
-function JFR.GetInstanceStatesTable(name)
+function JFR.GetInstanceStatesTable()
     return JFR.InstanceStates
 end
 
@@ -589,6 +593,7 @@ function JFR.NewText(name, parent, params)
     params.TextSize = params.TextSize or 19
     params.RichText = params.RichText or true
     params.TextYAlignment = params.TextYAlignment or Enum.TextYAlignment.Top
+    params.TextXAlignment = params.TextXAlignment or Enum.TextXAlignment.Left
     params.Invisible = params.Invisible or false
     
     params.BackgroundColor3 = params.BackgroundColor3 or JFR.Theme.shade6
@@ -610,7 +615,7 @@ function JFR.NewText(name, parent, params)
     inst.TextColor3 = params.TextColor3
     inst.TextSize = params.TextSize
     inst.BorderSizePixel = 0 
-    inst.TextXAlignment = Enum.TextXAlignment.Left
+    inst.TextXAlignment = params.TextXAlignment
     inst.TextYAlignment = params.TextYAlignment
     inst.Name = GenerateName()
     inst.ZIndex = params.ZIndex
@@ -665,7 +670,7 @@ function JFR.NewButton(name, parent, params, functions)
     inst.BackgroundTransparency = 0
     inst.ClipsDescendants = true
 
-
+    
     JFR.InstanceStates[name] = false
     JFR.Instances[name] = inst
     if not params.Unroundify then
