@@ -1,4 +1,4 @@
-print("Loaded Jeff UI; current version = 1.2.5.1")
+print("Loaded Jeff UI; current version = 1.2.5.2")
 
 
 local PlayerService        = game:GetService("Players")
@@ -650,6 +650,7 @@ function JFR.NewButton(name, parent, params, functions)
     params.BorderColor3 = params.BorderColor3 or JFR.Theme.shade1
     params.TextColor3 = params.TextColor3 or JFR.Theme.text
     params.Invisible = params.Invisible or false
+    params.TextScaled = params.TextScaled or false
     
     params.Unroundify = params.Unroundify or false
 
@@ -663,6 +664,7 @@ function JFR.NewButton(name, parent, params, functions)
     inst.BackgroundColor3 = params.BackgroundColor3
     inst.TextColor3 = params.TextColor3
     inst.TextSize = params.TextSize
+    inst.TextScaled = params.TextScaled
     inst.RichText = params.RichText
     inst.Name = GenerateName()
     inst.Visible = not params.Invisible
