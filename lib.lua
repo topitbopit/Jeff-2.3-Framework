@@ -1,4 +1,4 @@
-print("Loaded Jeff UI; current version = 1.2.5.2")
+print("Loaded Jeff UI; current version = 1.2.5.3")
 
 
 local PlayerService        = game:GetService("Players")
@@ -715,6 +715,7 @@ function JFR.NewTextBox(name, parent, params, functiononleave)
     params.TextColor3 = params.TextColor3 or JFR.Theme.text
     params.ClearTextOnFocus = params.ClearTextOnFocus or false
     params.Invisible = params.Invisible or false
+    params.TextWrapped = params.TextWrapped or false
     
     params.Unroundify = params.Unroundify or false
 
@@ -736,6 +737,7 @@ function JFR.NewTextBox(name, parent, params, functiononleave)
     inst.ClipsDescendants = true
     inst.Visible = not params.Invisible
     inst.ClearTextOnFocus = params.ClearTextOnFocus
+    inst.TextWrapped = params.TextWrapped
 
 
     JFR.Instances[name] = inst
