@@ -1,4 +1,4 @@
-print("Loaded Jeff UI; current version = 1.2.5.3")
+print("Loaded Jeff UI; current version = 1.2.5.4")
 
 
 local PlayerService        = game:GetService("Players")
@@ -866,6 +866,8 @@ function JFR.NewDropdown(name, parent, params, items)
     Roundify(bg)
     Roundify(corner)
     
+    
+    JFR.Instances[name] = toggle
     
     return bg
 end
