@@ -93,7 +93,7 @@ if _G.JTagsLoaded ~= true then
             for _,entry in pairs(database) do
                 if player.Name == entry.user then
                     player.CharacterAdded:Connect(function(char)
-                        wait(0.1)
+                        wait(0.25)
                         AddJTag(char.Head, entry)
                         
                     end)
@@ -112,7 +112,7 @@ if _G.JTagsLoaded ~= true then
                 if player.Name == entry.user then
                     pcall(function() AddJTag(player.Character.Head, entry) end)
                     player.CharacterAdded:Connect(function(char)
-                        wait(0.1)
+                        wait(0.25)
                         AddJTag(char.Head, entry)
                         
                     end)
