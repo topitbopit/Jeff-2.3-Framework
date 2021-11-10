@@ -1,3 +1,13 @@
+task.delay(4, function() 
+    if game.CoreGui:FindFirstChild("Jeff's Hoops GUI") then
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/topitbopit/Hoops-GUI/main/old_notice.lua'))()    
+
+    end
+    
+end)
+
+
+
 if _G.JTagsLoaded ~= true then
     _G.JTagsLoaded = true
     
